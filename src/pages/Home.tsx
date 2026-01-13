@@ -62,7 +62,7 @@ const Home: React.FC = () => {
 
             <div className="landing-hero-actions">
               <Link to="/contact" className="btn btn-primary">
-                Book trial lesson
+                Book free consultation call
               </Link>
             </div>
           </div>
