@@ -1,6 +1,7 @@
 // src/components/Navbar.tsx
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import brandLogo from '../assets/AndreaMusicCoachLogoNoText.png';
 
 const teacherName = 'Andrea';
 
@@ -19,12 +20,14 @@ const Navbar: React.FC = () => {
     <header className="navbar">
       <div className="container navbar-inner">
         <Link to="/" className="brand" onClick={closeMenu}>
-          <div className="brand-logo" aria-hidden="true">
-            ♬
-          </div>
+          <img
+            src={brandLogo}
+            alt="Andrea Music Coach logo"
+            className="brand-logo"
+          />
           <div className="brand-text">
-            <span className="brand-title">{teacherName} Coutinho — Music Coaching: Voice &amp; Piano</span>
-            <span className="brand-subtitle">Adults of all abilities • Los Angeles</span>
+            <span className="brand-title">{teacherName} Coutinho - Music Coaching</span>
+            <span className="brand-subtitle">Private lessons for adults in Los Angeles and online.</span>
           </div>
         </Link>
 
@@ -88,3 +91,6 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+
+
+

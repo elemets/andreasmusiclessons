@@ -1,7 +1,7 @@
 // src/pages/Home.tsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import andreaHero from '../assets/andrea-hero.jpg'; // <-- your image of Andrea playing
+import andreaHero from '../assets/hero-other-2.jpg'; // <-- your image of Andrea playing
 import microphoneIcon from '../assets/microphone.png';
 import pianoIcon from '../assets/piano.png';
 import musicNoteIcon from '../assets/music-note.png';
@@ -92,8 +92,8 @@ const Home: React.FC = () => {
               </p>
 
               <div className="landing-hero-actions">
-                <Link to="/contact" className="btn btn-primary">
-                  Book free consultation call
+                <Link to="/contact" className="btn btn-primary-second">
+                  Book a free consultation call
                 </Link>
               </div>
             </div>
@@ -105,7 +105,7 @@ const Home: React.FC = () => {
         <div className="container">
           <div className="section-header reveal">
             <p className="eyebrow">Offerings</p>
-            <h2 className="section-title">Build the skills you want to feel</h2>
+            <h2 className="section-title">Build new skills in a supportive environent</h2>
             <p className="section-subtitle">
               Focused lessons that balance technique, artistry, and confidence.
             </p>

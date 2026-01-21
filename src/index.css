@@ -33,7 +33,7 @@ body {
   --text-main: #5b4a3f;
   --text-muted: #7f6f64;
   --border-subtle: #eadfd4;
-  --shadow-soft: 0 20px 45px rgba(120, 93, 75, 0.18);
+  --shadow-soft: none;
   --radius-lg: 20px;
   --radius-md: 14px;
   --radius-full: 999px;
@@ -44,7 +44,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: inherit;
   margin: 0;
   color: var(--primary);
 }
@@ -107,7 +107,6 @@ a:hover {
   transition:
     background 0.18s ease,
     color 0.18s ease,
-    box-shadow 0.18s ease,
     transform 0.08s ease;
   white-space: nowrap;
 }
@@ -116,12 +115,16 @@ a:hover {
   background: linear-gradient(135deg, #f4b070, #e58b57);
   color: #3b2f2a;
   border-color: transparent;
-  box-shadow: 0 16px 32px rgba(120, 93, 75, 0.28);
+}
+
+.btn-primary-second {
+  background: #242424;
+  color: #ffffff;
+  border-color: transparent;
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 20px 40px rgba(120, 93, 75, 0.32);
   text-decoration: none;
 }
 
@@ -170,29 +173,30 @@ a:hover {
   align-items: center;
   gap: 0.75rem;
   text-decoration: none;
+  margin-left: -0.6rem;
+}
+
+.brand:hover {
+  text-decoration: none;
 }
 
 .brand-logo {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 35%;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle at 30% 20%, #f4b070, #f9e6d2);
-  color: #3b2f2a;
-  font-size: 1.5rem;
-  box-shadow: 0 16px 32px rgba(120, 93, 75, 0.3);
+  width: 3.1rem;
+  height: 3.1rem;
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .brand-text {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .brand-title {
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   font-size: 0.87rem;
   color: var(--primary);
 }
@@ -418,7 +422,6 @@ a:hover {
   border-radius: 1.7rem;
   padding: 3px;
   background: linear-gradient(135deg, rgba(244, 176, 112, 1), rgba(247, 202, 165, 0.9));
-  box-shadow: var(--shadow-soft);
 }
 
 .hero-photo-inner {
@@ -539,7 +542,6 @@ a:hover {
   border-radius: var(--radius-lg);
   padding: 1.2rem 1.2rem 1.4rem;
   border: 1px solid rgba(234, 223, 212, 0.9);
-  box-shadow: 0 12px 28px rgba(120, 93, 75, 0.18);
 }
 
 .feature-icon {
@@ -572,6 +574,10 @@ a:hover {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+.services-section {
+  background: #ffffff;
 }
 
 .reveal {
@@ -619,10 +625,9 @@ a:hover {
 }
 
 .service-icon {
-  width: 4.8rem;
-  height: 4.8rem;
+  width: 10rem;
+  height: 10rem;
   object-fit: contain;
-  filter: drop-shadow(0 6px 16px rgba(120, 93, 75, 0.2));
   opacity: 0.72;
 }
 
@@ -737,7 +742,6 @@ a:hover {
   border-radius: var(--radius-md);
   padding: 1.1rem 1.2rem 1.25rem;
   border: 1px solid rgba(234, 223, 212, 0.9);
-  box-shadow: 0 16px 32px rgba(120, 93, 75, 0.28);
 }
 
 .card-title {
@@ -799,7 +803,6 @@ a:hover {
   background: radial-gradient(circle at top left, #ffffff, #fff4e6 70%);
   border-radius: var(--radius-lg);
   padding: 1.8rem 1.7rem 1.8rem;
-  box-shadow: var(--shadow-soft);
   border: 1px solid rgba(234, 223, 212, 0.9);
 }
 
@@ -1084,6 +1087,7 @@ a:hover {
   position: absolute;
   inset: 0;
   background:
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 45%, rgba(40, 26, 18, 0.35) 100%),
     radial-gradient(circle at top left, rgba(255, 246, 235, 0.7), transparent 40%),
     linear-gradient(to bottom right, rgba(255, 250, 243, 0.7), rgba(255, 240, 226, 0.9));
 }
@@ -1181,4 +1185,5 @@ a:hover {
     font-size: 0.95rem;
   }
 }
+
 
