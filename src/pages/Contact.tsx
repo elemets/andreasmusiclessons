@@ -122,8 +122,8 @@ const Contact: React.FC = () => {
             {status === 'error' && (
               <p className="status-message status-error">
                 Something went wrong. Please try again or email Andrea directly at{' '}
-                <a href="mailto:andreamusiclessons@gmail.com">
-                  andreamusiclessons@gmail.com
+                <a href="mailto:music@andreacoutinho.com">
+                  music@andreacoutinho.com
                 </a>
                 .
               </p>
@@ -138,10 +138,10 @@ const Contact: React.FC = () => {
               <li>
                 <span className="detail-label">Email</span>
                 <a
-                  href="mailto:andreamusiclessons@gmail.com"
+                  href="mailto:music@andreacoutinho.com"
                   className="detail-link"
                 >
-                  andreamusiclessons@gmail.com
+                  music@andreacoutinho.com
                 </a>
               </li>
               <li>
@@ -158,9 +158,8 @@ const Contact: React.FC = () => {
           <div className="card">
             <h2 className="card-title">Lesson times</h2>
             <ul className="bullet-list">
-              <li>Weekday mornings</li>
-              <li>Tuesday all day</li>
-              <li>Limited weekend availability</li>
+              <li>All day throughout the working week</li>
+              <li>Request a call for detailed availability</li>
             </ul>
           </div>
         </aside>
