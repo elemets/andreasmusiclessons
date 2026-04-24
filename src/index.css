@@ -1313,13 +1313,13 @@ a:hover {
 
   /* More pale hero image on mobile — lighter wash + softer filter */
   .landing-hero-image {
-    filter: saturate(0.55) brightness(1.18) contrast(0.92);
+    filter: saturate(0.4) brightness(1.22) contrast(0.9);
   }
 
   .landing-hero-gradient {
     background:
-      radial-gradient(ellipse at center, rgba(28, 25, 23, 0) 45%, rgba(28, 25, 23, 0.18) 100%),
-      linear-gradient(rgba(250, 248, 244, 0.72), rgba(250, 248, 244, 0.72));
+      radial-gradient(ellipse at center, rgba(28, 25, 23, 0) 45%, rgba(28, 25, 23, 0.14) 100%),
+      linear-gradient(rgba(250, 248, 244, 0.82), rgba(250, 248, 244, 0.82));
   }
 }
 
