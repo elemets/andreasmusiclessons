@@ -12,8 +12,8 @@ const Footer: React.FC = () => {
           </span>
         </div>
         <div className="footer-links">
-          <a href="mailto:andreamusiclessons@gmail.com" className="footer-link">
-            andreamusiclessons@gmail.com
+          <a href="mailto:music@andreacoutinho.com" className="footer-link">
+            music@andreacoutinho.com
           </a>
           <a href="tel:+17708918775" className="footer-link">
             +1 (770) 891-8775

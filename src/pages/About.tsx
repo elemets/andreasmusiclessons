@@ -1,5 +1,6 @@
 // src/pages/About.tsx
 import React from 'react';
+import andreaAbout from '../assets/andreaabout.jpeg';
 
 const teacherName = 'Andrea';
 
@@ -7,45 +8,37 @@ const About: React.FC = () => {
   return (
     <section className="section section-narrow">
       <div className="container">
-        <header className="section-header">
-          <p className="eyebrow">About</p>
-          <h1 className="section-title">Meet {teacherName}</h1>
-          <p className="section-subtitle">
-            A dedicated music teacher and coach in Los Angeles, working exclusively with
-            adults who want a thoughtful, structured approach to
-            learning. Andrea's expertise lie in music theory, voice and piano. 
-          </p>
-        </header>
-
         <div className="about-layout">
-          <article className="about-main">
+          <div className="about-main-column">
+            <header className="section-header">
+              <p className="eyebrow">About</p>
+              <h1 className="section-title">Meet {teacherName}</h1>
+              <p className="section-subtitle">
+               A dedicated music teacher and coach in Los Angeles, working with children and adults who want a thoughtful, structured approach to learning. Andrea's expertise lies in piano, voice, and songwriting.
+              </p>
+            </header>
+
+            <article className="about-main">
             <p>
-              {teacherName} teaches students in their homes across Los Angeles. 
-              Lessons are calm, focused, and tailored to each student&apos;s goals—whether 
-              that&apos;s playing Chopin, film scores, or simply developing a beautiful touch at the piano. 
-               Andrea is also a well versed voice coach with years of experience helping 
-              beginners find their voices and advanced students&apos; perfect their tone.
+              Andrea teaches students in their homes across Los Angeles. Piano lessons are calm, focused, and tailored to each student's goals whether that's playing Chopin or simply enjoying playing today’s pop songs. Andrea is also a well versed voice coach with years of experience helping beginners find their voices and advanced students' perfect their technique and artistry.
+
             </p>
 
             <p>
-              Rather than quick fixes or one-off classes, {teacherName} works best
-              with students who are ready to commit to regular practice and long-term
-              growth. The pace is adjusted to each student, but the standard is
-              intentionally high.
+            Rather than quick fixes or one-off classes, Andrea works best with students who are ready to commit to regular practice and long-term growth. The pace is adjusted to each student, but the standard is intentionally high.
+
             </p>
 
             <p>
-              Lessons typically include a mix of technique, sound work, repertoire,
-              and a small amount of theory and ear training woven in. Students are encouraged
-              to bring any music they would like to learn, {teacherName}&apos;s teaching style 
-              supports the curiosity and discovery that makes learning music so rewarding. 
+              Lessons typically include a mix of technique, sound work, repertoire, and a small amount of theory and ear training woven in. Students are encouraged to bring any music they would like to learn, Andrea's teaching style supports the curiosity of each student which makes learning music more enjoyable and rewarding.
+
             </p>
 
             <h2 className="about-subtitle">Teaching approach</h2>
             <ul className="checklist">
               <li>Warm, calm, and supportive atmosphere</li>
               <li>Clear, honest feedback without pressure or judgment</li>
-              <li>Intentional </li>
+              <li>Intentional lesson plans catered to the individual student </li>
               <li>Respect for your goals, taste, and schedule</li>
             </ul>
 
@@ -61,12 +54,16 @@ const About: React.FC = () => {
             </ul>
 
             <p className="muted">
-              Andrea holds a Bachelor's in music composition from Berklee College of Music. She has been playing piano
-              for 20 years and has been teaching privately and at different music school for the last four years. 
+              Andrea holds a Bachelor of Music in Composition from Berklee College of Music. She has been playing piano and singing for 20 years and has been teaching privately and at music schools for the last 4 years.
             </p>
-          </article>
+            </article>
+          </div>
 
           <aside className="about-side">
+            <figure className="about-portrait">
+              <img src={andreaAbout} alt="Andrea Coutinho" className="about-portrait-image" />
+            </figure>
+
             <div className="card">
               <h3 className="card-title">Lesson details</h3>
               <dl className="definition-list">
@@ -94,7 +91,7 @@ const About: React.FC = () => {
               <ul className="bullet-list">
                 <li>Weekly lessons reserved at a regular time</li>
                 <li>Commitment to home practice between lessons</li>
-                <li>Respectful, quiet space for in‑home lessons</li>
+                <li>Respectful and quiet space for in‑home lessons</li>
                 <li>Clear communication around scheduling and travel</li>
               </ul>
               <p className="muted small-text">

@@ -1,12 +1,15 @@
 // src/pages/Home.tsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import andreaHero from '../assets/hero-other-2.jpg'; // <-- your image of Andrea playing
+import andreaHero from '../assets/hero-other-2.jpg'; 
 import microphoneIcon from '../assets/microphone.png';
 import pianoIcon from '../assets/piano.png';
 import musicNoteIcon from '../assets/music-note.png';
+import songwritingIcon from '../assets/songwriting-icon.png';
 
-const fullText = 'Andrea Coutinho: Premium music coaching for adults of all abilities';
+
+
+const fullText = 'Andrea Coutinho: Premium music coaching';
 
 const Home: React.FC = () => {
   const [displayedText, setDisplayedText] = useState('');
@@ -72,7 +75,7 @@ const Home: React.FC = () => {
           <div className="container">
             <div className="landing-hero-content">
               <p className="landing-hero-kicker">
-                Los Angeles | Voice | Piano | Music Theory
+              Voice | Piano | Music Theory | Songwriting
               </p>
 
               <h1 className="landing-hero-heading">
@@ -105,9 +108,9 @@ const Home: React.FC = () => {
         <div className="container">
           <div className="section-header reveal">
             <p className="eyebrow">Offerings</p>
-            <h2 className="section-title">Build new skills in a supportive environent</h2>
+            <h2 className="section-title">Build new skills in a supportive envrionment</h2>
             <p className="section-subtitle">
-              Focused lessons that balance technique, artistry, and confidence.
+              Lessons that focus on building confidence and supporting students to learn.
             </p>
           </div>
 
@@ -125,6 +128,10 @@ const Home: React.FC = () => {
             <div className="service-item reveal">
               <img src={musicNoteIcon} alt="Music theory lessons" className="service-icon" />
               <h3 className="service-title">Music Theory</h3>
+            </div>
+            <div className="service-item reveal">
+              <img src={songwritingIcon} alt="Song Writing" className="service-icon" />
+              <h3 className="service-title">Songwriting</h3>
             </div>
           </div>
         </div>
