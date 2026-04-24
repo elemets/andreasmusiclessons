@@ -1061,10 +1061,51 @@ a:hover {
 
   .mobile-toggle {
     display: inline-flex;
+    flex-shrink: 0;
   }
 
   .mobile-menu {
     display: block;
+  }
+
+  /* Navbar: reclaim full width and let brand text truncate so it can't push the hamburger */
+  .navbar .container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .brand {
+    min-width: 0;
+    flex: 1 1 auto;
+    margin-left: 0;
+    gap: 0.6rem;
+  }
+
+  .brand-logo {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  .brand-text {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .brand-title {
+    font-size: 0.82rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .brand-subtitle {
+    display: none;
+  }
+
+  /* Hero photo on mobile — shift focus to the pianist (left side of the image) */
+  .landing-hero-image {
+    object-position: 18% center;
   }
 
   .hero {
