@@ -77,11 +77,11 @@ const About: React.FC = () => {
                 </div>
                 <div className="definition-row">
                   <dt>Students</dt>
-                  <dd>Adults of any skill level: voice or piano</dd>
+                  <dd>Voice or piano students at any skill level</dd>
                 </div>
                 <div className="definition-row">
                   <dt>Focus</dt>
-                  <dd>Thoughtful, high‑quality study</dd>
+                  <dd>Thoughtful, high-quality study</dd>
                 </div>
               </dl>
             </div>

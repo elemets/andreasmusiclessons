@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
             ))}
           </div>
           <Link to="/contact" className="btn btn-small btn-primary">
-            Request a trial
+            Request Free Consultation
           </Link>
         </nav>
 
@@ -82,7 +82,7 @@ const Navbar: React.FC = () => {
             className="btn btn-fullwidth btn-primary"
             onClick={closeMenu}
           >
-            Request a trial
+            Request Free Consultation
           </Link>
         </nav>
       )}
