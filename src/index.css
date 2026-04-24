@@ -1289,16 +1289,37 @@ a:hover {
     min-height: calc(100vh - 4rem);
   }
 
+  /* Center the whole hero stack on mobile */
   .landing-hero-content {
     padding: 2.5rem 0 2.8rem;
+    text-align: center;
+    margin: 0 auto;
   }
 
   .landing-hero-heading {
-    font-size: 1.9rem;
+    font-size: 2.4rem;
+    justify-content: center;
   }
 
   .landing-hero-subtitle {
-    font-size: 0.95rem;
+    font-size: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .landing-hero-actions {
+    justify-content: center;
+  }
+
+  /* More pale hero image on mobile — lighter wash + softer filter */
+  .landing-hero-image {
+    filter: saturate(0.55) brightness(1.18) contrast(0.92);
+  }
+
+  .landing-hero-gradient {
+    background:
+      radial-gradient(ellipse at center, rgba(28, 25, 23, 0) 45%, rgba(28, 25, 23, 0.18) 100%),
+      linear-gradient(rgba(250, 248, 244, 0.72), rgba(250, 248, 244, 0.72));
   }
 }
 
