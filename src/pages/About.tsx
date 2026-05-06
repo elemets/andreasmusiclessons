@@ -53,19 +53,13 @@ const About: React.FC = () => {
             </header>
 
             <article className="about-main">
-            <p>
-              Andrea teaches students in their homes across Los Angeles. Piano lessons are calm, focused, and tailored to each student's goals whether that's playing Chopin or simply enjoying playing today’s pop songs. Andrea is also a well versed voice coach with years of experience helping beginners find their voices and advanced students' perfect their technique and artistry.
-
+            <p className="muted">
+              Andrea holds a Bachelor of Music in Composition from Berklee College of Music. She has been playing piano and singing for 20 years and has been teaching privately and at music schools for the last 4 years.
             </p>
 
+            <h2 className="about-subtitle">About the lessons</h2>
             <p>
-            Rather than quick fixes or one-off classes, Andrea works best with students who are ready to commit to regular practice and long-term growth. The pace is adjusted to each student, but the standard is intentionally high.
-
-            </p>
-
-            <p>
-              Lessons typically include a mix of technique, sound work, repertoire, and a small amount of theory and ear training woven in. Students are encouraged to bring any music they would like to learn, Andrea's teaching style supports the curiosity of each student which makes learning music more enjoyable and rewarding.
-
+              Andrea teaches piano and voice in students&apos; homes across Los Angeles, blending technique, repertoire, and ear training in lessons tailored to each student — from children just starting out to adults rediscovering their craft. The pace adjusts to you; the standard stays high, and lessons work best for students ready to commit to regular practice and long-term growth.
             </p>
 
             <h2 className="about-subtitle">Teaching approach</h2>
@@ -87,10 +81,6 @@ const About: React.FC = () => {
               <li>Returning to piano after a break and want to refine your playing</li>
               <li>Open to consistent practice and long-term work</li>
             </ul>
-
-            <p className="muted">
-              Andrea holds a Bachelor of Music in Composition from Berklee College of Music. She has been playing piano and singing for 20 years and has been teaching privately and at music schools for the last 4 years.
-            </p>
             </article>
           </div>
 
