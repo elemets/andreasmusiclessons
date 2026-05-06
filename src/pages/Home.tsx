@@ -134,6 +134,10 @@ const Home: React.FC = () => {
               <h3 className="service-title">Songwriting</h3>
             </div>
           </div>
+
+          <p className="services-note reveal">
+            Lessons for ages 7 and up — children, teens, and adults of all levels.
+          </p>
         </div>
       </section>
 
@@ -178,6 +182,18 @@ const Home: React.FC = () => {
               <figcaption className="testimonial-meta">
                 <span className="testimonial-name">Priya S.</span>
                 <span className="testimonial-role">Returning student</span>
+              </figcaption>
+            </figure>
+
+            <figure className="testimonial-card reveal">
+              <blockquote className="testimonial-quote">
+                Andrea has been wonderful with our daughter. She makes lessons feel
+                both serious and joyful, and we&apos;ve watched our daughter&apos;s confidence
+                at the piano grow enormously over the past year.
+              </blockquote>
+              <figcaption className="testimonial-meta">
+                <span className="testimonial-name">Sarah &amp; Michael R.</span>
+                <span className="testimonial-role">Parents of a 9-year-old student</span>
               </figcaption>
             </figure>
           </div>

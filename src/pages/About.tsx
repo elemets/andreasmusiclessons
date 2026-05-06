@@ -1,5 +1,5 @@
 // src/pages/About.tsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import andreaOnWater from '../assets/AndreaOnWater.jpeg';
 import andreaAtPiano from '../assets/AndreaAtPiano.jpeg';
 
@@ -10,15 +10,34 @@ const portraitSlides = [
   { src: andreaAtPiano, alt: 'Andrea Coutinho at the piano' },
 ];
 
+const SWIPE_THRESHOLD = 40;
+
 const About: React.FC = () => {
   const [activeSlide, setActiveSlide] = useState(0);
+  const touchStartX = useRef(0);
 
+  // Auto-advance — restarts whenever the slide changes (so a manual swipe / dot
+  // click gives you a fresh 5 seconds before the next auto change).
   useEffect(() => {
     const interval = window.setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % portraitSlides.length);
     }, 5000);
     return () => window.clearInterval(interval);
-  }, []);
+  }, [activeSlide]);
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLElement>) => {
+    touchStartX.current = event.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (event: React.TouchEvent<HTMLElement>) => {
+    const dx = event.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) < SWIPE_THRESHOLD) return;
+    if (dx < 0) {
+      setActiveSlide((prev) => (prev + 1) % portraitSlides.length);
+    } else {
+      setActiveSlide((prev) => (prev - 1 + portraitSlides.length) % portraitSlides.length);
+    }
+  };
 
   return (
     <section className="section section-narrow">
@@ -61,6 +80,7 @@ const About: React.FC = () => {
             <p>Andrea&apos;s teaching is a strong fit if you are:</p>
             <ul className="checklist">
               <li>A student who is serious about piano as a main activity</li>
+              <li>Any children who want support finding their unique musical expression</li>
               <li>A student who wants to learn to sing amatuer or advanced</li>
               <li>An adult beginner who values structure and quality</li>
               <li>Anyone who wants support with music theory or songwriting</li>
@@ -74,8 +94,13 @@ const About: React.FC = () => {
             </article>
           </div>
 
-          <aside className="about-side">
-            <figure className="about-portrait" aria-roledescription="carousel">
+          <div className="about-side-carousel">
+            <figure
+              className="about-portrait"
+              aria-roledescription="carousel"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
               <div className="about-portrait-track">
                 {portraitSlides.map((slide, index) => (
                   <img
@@ -87,6 +112,7 @@ const About: React.FC = () => {
                       (index === activeSlide ? ' is-active' : '')
                     }
                     aria-hidden={index !== activeSlide}
+                    draggable={false}
                   />
                 ))}
               </div>
@@ -107,7 +133,9 @@ const About: React.FC = () => {
                 ))}
               </div>
             </figure>
+          </div>
 
+          <aside className="about-side-cards">
             <div className="card">
               <h3 className="card-title">Lesson details</h3>
               <dl className="definition-list">

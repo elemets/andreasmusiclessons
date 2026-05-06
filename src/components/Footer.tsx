@@ -10,6 +10,9 @@ const Footer: React.FC = () => {
           <span className="footer-note">
             Inspiring confident musicians, one lesson at a time.
           </span>
+          <span className="footer-area">
+            Serving Brentwood, Pacific Palisades, Beverly Hills, Santa Monica &amp; surrounding L.A. neighborhoods.
+          </span>
         </div>
         <div className="footer-links">
           <a href="mailto:music@andreacoutinho.com" className="footer-link">
