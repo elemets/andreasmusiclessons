@@ -86,7 +86,7 @@ const Contact: React.FC = () => {
                 id="location"
                 name="location"
                 type="text"
-                placeholder="e.g. West LA, Silver Lake, Beverly Hills"
+                placeholder="e.g. Calabassas, Beverly Hills, West LA "
               />
             </div>
 
