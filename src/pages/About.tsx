@@ -1,10 +1,25 @@
 // src/pages/About.tsx
-import React from 'react';
-import andreaAbout from '../assets/andreaabout.jpeg';
+import React, { useEffect, useState } from 'react';
+import andreaOnWater from '../assets/AndreaOnWater.jpeg';
+import andreaAtPiano from '../assets/AndreaAtPiano.jpeg';
 
 const teacherName = 'Andrea';
 
+const portraitSlides = [
+  { src: andreaOnWater, alt: 'Andrea Coutinho by the water' },
+  { src: andreaAtPiano, alt: 'Andrea Coutinho at the piano' },
+];
+
 const About: React.FC = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % portraitSlides.length);
+    }, 5000);
+    return () => window.clearInterval(interval);
+  }, []);
+
   return (
     <section className="section section-narrow">
       <div className="container">
@@ -60,8 +75,37 @@ const About: React.FC = () => {
           </div>
 
           <aside className="about-side">
-            <figure className="about-portrait">
-              <img src={andreaAbout} alt="Andrea Coutinho" className="about-portrait-image" />
+            <figure className="about-portrait" aria-roledescription="carousel">
+              <div className="about-portrait-track">
+                {portraitSlides.map((slide, index) => (
+                  <img
+                    key={slide.src}
+                    src={slide.src}
+                    alt={slide.alt}
+                    className={
+                      'about-portrait-image' +
+                      (index === activeSlide ? ' is-active' : '')
+                    }
+                    aria-hidden={index !== activeSlide}
+                  />
+                ))}
+              </div>
+              <div className="about-portrait-dots" role="tablist" aria-label="Choose photo">
+                {portraitSlides.map((slide, index) => (
+                  <button
+                    key={slide.src}
+                    type="button"
+                    role="tab"
+                    aria-selected={index === activeSlide}
+                    aria-label={`Show photo ${index + 1}`}
+                    className={
+                      'about-portrait-dot' +
+                      (index === activeSlide ? ' is-active' : '')
+                    }
+                    onClick={() => setActiveSlide(index)}
+                  />
+                ))}
+              </div>
             </figure>
 
             <div className="card">

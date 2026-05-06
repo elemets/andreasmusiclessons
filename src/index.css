@@ -734,6 +734,7 @@ a:hover {
 -------------------------------- */
 
 .about-portrait {
+  position: relative;
   margin: 0;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -742,12 +743,56 @@ a:hover {
   aspect-ratio: 4 / 5;
 }
 
+.about-portrait-track {
+  position: absolute;
+  inset: 0;
+}
+
 .about-portrait-image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   filter: saturate(0.85) contrast(0.98);
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.about-portrait-image.is-active {
+  opacity: 1;
+}
+
+.about-portrait-dots {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+  z-index: 1;
+}
+
+.about-portrait-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.about-portrait-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.about-portrait-dot.is-active {
+  background: #ffffff;
+  transform: scale(1.15);
 }
 
 .about-layout {
