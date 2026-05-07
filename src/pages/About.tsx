@@ -54,7 +54,7 @@ const About: React.FC = () => {
 
             <article className="about-main">
             <p className="muted">
-              Andrea holds a Bachelor of Music in Composition from Berklee College of Music. She has been playing piano and singing for 20 years and has been teaching privately and at music schools for the last 4 years.
+              Andrea holds a Bachelor of Music in Composition from Berklee College of Music. She has been playing piano and singing for 20 years and has been teaching privately for the last 4 years.
             </p>
 
             <h2 className="about-subtitle">About the lessons</h2>
