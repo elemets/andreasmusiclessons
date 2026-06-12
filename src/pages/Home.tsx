@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import andreaHero from '../assets/hero-other-2.jpg';
-import microphoneIcon from '../assets/microphone.png';
-import pianoIcon from '../assets/piano.png';
-import musicNoteIcon from '../assets/music-note.png';
-import songwritingIcon from '../assets/songwriting-icon.png';
+import microphoneIcon from '../assets/microphone.jpg';
+import pianoIcon from '../assets/piano.jpg';
+import musicNoteIcon from '../assets/music-note.jpg';
+import songwritingIcon from '../assets/songwriting-icon.jpg';
 import Seo from '../components/Seo';
 
 const teachingAreas = [
@@ -132,6 +132,8 @@ const Home: React.FC = () => {
             src={andreaHero}
             alt=""
             className="landing-hero-image"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="landing-hero-gradient" />
         </div>
@@ -189,21 +191,21 @@ const Home: React.FC = () => {
 
           <div className="services-grid reveal-stagger">
             <div className="service-item reveal">
-              <img src={microphoneIcon} alt="Private voice lessons in Los Angeles" className="service-icon" />
+              <img src={microphoneIcon} alt="Private voice lessons in Los Angeles" className="service-icon" loading="lazy" decoding="async" width="320" height="321" />
               <h3 className="service-title">Voice Lessons</h3>
             </div>
 
             <div className="service-item reveal">
-              <img src={pianoIcon} alt="In-home piano lessons in Los Angeles" className="service-icon" />
+              <img src={pianoIcon} alt="In-home piano lessons in Los Angeles" className="service-icon" loading="lazy" decoding="async" width="320" height="357" />
               <h3 className="service-title">Piano Lessons</h3>
             </div>
 
             <div className="service-item reveal">
-              <img src={musicNoteIcon} alt="Music theory lessons" className="service-icon" />
+              <img src={musicNoteIcon} alt="Music theory lessons" className="service-icon" loading="lazy" decoding="async" width="320" height="377" />
               <h3 className="service-title">Music Theory</h3>
             </div>
             <div className="service-item reveal">
-              <img src={songwritingIcon} alt="Songwriting coaching" className="service-icon" />
+              <img src={songwritingIcon} alt="Songwriting coaching" className="service-icon" loading="lazy" decoding="async" width="320" height="265" />
               <h3 className="service-title">Songwriting</h3>
             </div>
           </div>

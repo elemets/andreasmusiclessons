@@ -109,6 +109,8 @@ const About: React.FC = () => {
                     }
                     aria-hidden={index !== activeSlide}
                     draggable={false}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
                   />
                 ))}
               </div>
