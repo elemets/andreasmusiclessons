@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import andreaOnWater from '../assets/AndreaOnWater.jpeg';
 import andreaAtPiano from '../assets/AndreaAtPiano.jpeg';
+import Seo from '../components/Seo';
 
 const teacherName = 'Andrea';
 
@@ -41,6 +42,11 @@ const About: React.FC = () => {
 
   return (
     <section className="section section-narrow">
+      <Seo
+        title="About Andrea Coutinho | Berklee-Trained Piano & Voice Teacher in Los Angeles"
+        description="Andrea Coutinho is a Berklee College of Music graduate teaching piano, voice, music theory and songwriting in students' homes across Beverly Hills, Calabasas, Brentwood and LA's Westside."
+        path="/about"
+      />
       <div className="container">
         <div className="about-layout">
           <div className="about-main-column">
@@ -59,7 +65,7 @@ const About: React.FC = () => {
 
             <h2 className="about-subtitle">About the lessons</h2>
             <p>
-              Andrea teaches piano and voice in students&apos; homes across Los Angeles, blending technique, repertoire, and ear training in lessons tailored to each student — from children just starting out to adults rediscovering their craft. The pace adjusts to you; the standard stays high, and lessons work best for students ready to commit to regular practice and long-term growth.
+              Andrea teaches piano and voice in students&apos; homes across Beverly Hills, Hidden Hills, Calabasas, Brentwood, and LA&apos;s Westside, blending technique, repertoire, and ear training in lessons tailored to each student — from children just starting out to adults rediscovering their craft. The pace adjusts to you; the standard stays high, and lessons work best for students ready to commit to regular practice and long-term growth.
             </p>
 
             <h2 className="about-subtitle">Teaching approach</h2>
@@ -75,7 +81,7 @@ const About: React.FC = () => {
             <ul className="checklist">
               <li>A student who is serious about piano as a main activity</li>
               <li>Any children who want support finding their unique musical expression</li>
-              <li>A student who wants to learn to sing amatuer or advanced</li>
+              <li>A student who wants to learn to sing, from amateur to advanced</li>
               <li>An adult beginner who values structure and quality</li>
               <li>Anyone who wants support with music theory or songwriting</li>
               <li>Returning to piano after a break and want to refine your playing</li>

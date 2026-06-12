@@ -1,5 +1,6 @@
 // src/pages/Contact.tsx
 import React, { useState } from 'react';
+import Seo from '../components/Seo';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -18,11 +19,16 @@ const Contact: React.FC = () => {
 
   return (
     <section className="section section-narrow">
+      <Seo
+        title="Book Piano & Voice Lessons in Beverly Hills, Calabasas & West LA | Andrea Coutinho"
+        description="Request a free consultation for premium in-home piano and voice lessons with Andrea Coutinho — serving Beverly Hills, Hidden Hills, Calabasas, Brentwood and surrounding LA neighborhoods."
+        path="/contact"
+      />
       <div className="container contact-layout">
         <div className="contact-card">
           <header className="section-header">
             <p className="eyebrow">Contact</p>
-            <h1 className="section-title">Request a free consultation call</h1>
+            <h1 className="section-title">Request a consultation call</h1>
             <p className="section-subtitle">
               Share a bit about yourself, and Andrea will follow up
               with availability and next steps for in-home lessons.
