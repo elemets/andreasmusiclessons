@@ -2,51 +2,48 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import andreaHero from '../assets/hero-other-2.jpg';
-import microphoneIcon from '../assets/microphone.jpg';
-import pianoIcon from '../assets/piano.jpg';
-import musicNoteIcon from '../assets/music-note.jpg';
-import songwritingIcon from '../assets/songwriting-icon.jpg';
 import Seo from '../components/Seo';
+import {
+  MicrophoneIcon,
+  PianoIcon,
+  SongwritingIcon,
+  TheoryIcon,
+} from '../components/ServiceIcons';
+import { AREAS } from '../data/areas';
+import { FAQS } from '../data/faqs';
+import { VISIBLE_TESTIMONIALS } from '../data/testimonials';
+import { faqSchema, personSchema } from '../data/schema';
+import { HOME_META } from '../data/routes';
 
-const teachingAreas = [
-  'Beverly Hills',
-  'Bel Air',
-  'Hidden Hills',
-  'Calabasas',
-  'Brentwood',
-  'Pacific Palisades',
-  'Santa Monica',
-  'Malibu',
+const services = [
+  { title: 'Voice Lessons', Icon: MicrophoneIcon, blurb: 'Breath, tone and range built patiently, for singers at any level.' },
+  { title: 'Piano Lessons', Icon: PianoIcon, blurb: 'Technique, reading and repertoire on your own instrument at home.' },
+  { title: 'Music Theory', Icon: TheoryIcon, blurb: 'The grammar behind the music, taught so it is genuinely usable.' },
+  { title: 'Songwriting', Icon: SongwritingIcon, blurb: 'Melody, lyric and structure, from a Berklee composition graduate.' },
 ];
 
-// NOTE: placeholder testimonials. Replace each entry with a verbatim quote from
-// a real student or parent as soon as you have permission to use it — real
-// names, real specifics (a piece learned, a recital, months studied) are what
-// make testimonials credible.
-const testimonials = [
+const credentials = [
+  { value: 'Berklee', label: 'College of Music' },
+  { value: '20 years', label: 'Playing & singing' },
+  { value: 'Ages 7+', label: 'Children, teens, adults' },
+  { value: 'In-home', label: 'Across the Westside' },
+];
+
+const process = [
   {
-    quote:
-      'Andrea made lessons feel calm and inspiring. I can finally play with confidence instead of nerves.',
-    name: 'Marisa',
-    role: 'Adult piano student',
+    step: '01',
+    title: 'A consultation call',
+    body: 'A short, unhurried conversation about the student, their goals and what a realistic weekly rhythm looks like. No pressure to book.',
   },
   {
-    quote:
-      'Andrea has helped me so much with singing and generally in my life. She has the best energy and facilitates a safe environment to take risks, push yourself and learn. Andrea has an extreme wealth of knowledge in voice, piano, guitar, music theory and psychology making her a very versatile and well rounded teacher. If you are interested in working with someone to pursue music, working with Andrea can really get you to the next level.',
-    name: 'Austin',
-    role: 'Adult voice student',
+    step: '02',
+    title: 'A first lesson at home',
+    body: 'Andrea comes to you, assesses where the student actually is, and starts them on something they want to play.',
   },
   {
-    quote:
-      'I love how practical the theory work is. It changed how I listen and how I play.',
-    name: 'Priya',
-    role: 'Returning student',
-  },
-  {
-    quote:
-      'Andrea has been wonderful with our daughter. She makes lessons feel both serious and joyful, and we’ve watched her confidence at the piano grow enormously over the past year.',
-    name: 'Sarah & Michael R.',
-    role: 'Parents of a 9-year-old student',
+    step: '03',
+    title: 'A standing weekly slot',
+    body: 'Your time is held each week through the term, with clear feedback on practice and honest guidance on progress.',
   },
 ];
 
@@ -55,43 +52,31 @@ const typedHeading = 'Private music coaching';
 const Home: React.FC = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [carouselPaused, setCarouselPaused] = useState(false);
-  const [displayedHeading, setDisplayedHeading] = useState('');
-  const [isTyping, setIsTyping] = useState(true);
 
-  // Typewriter effect for the first heading line; the italic line, subtitle
-  // and CTA fade in afterwards (delays set in CSS).
-  useEffect(() => {
-    let index = 0;
-    const interval = window.setInterval(() => {
-      index += 1;
-      setDisplayedHeading(typedHeading.slice(0, index));
-
-      if (index >= typedHeading.length) {
-        setIsTyping(false);
-        window.clearInterval(interval);
-      }
-    }, 40);
-
-    return () => window.clearInterval(interval);
-  }, []);
+  const testimonialCount = VISIBLE_TESTIMONIALS.length;
 
   const showPrev = () =>
-    setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setActiveTestimonial((prev) => (prev - 1 + testimonialCount) % testimonialCount);
   const showNext = () =>
-    setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+    setActiveTestimonial((prev) => (prev + 1) % testimonialCount);
 
-  // Auto-rotate one testimonial at a time; restarts after manual navigation
-  // and pauses while the reader hovers over the quote.
   useEffect(() => {
-    if (carouselPaused) return;
-    const interval = window.setInterval(showNext, 7000);
+    if (carouselPaused || testimonialCount < 2) return;
+    const interval = window.setInterval(
+      () => setActiveTestimonial((prev) => (prev + 1) % testimonialCount),
+      7000,
+    );
     return () => window.clearInterval(interval);
-  }, [activeTestimonial, carouselPaused]);
+  }, [carouselPaused, testimonialCount]);
 
   useEffect(() => {
     const targets = document.querySelectorAll<HTMLElement>('.reveal');
+    if (!targets.length) return;
 
-    if (!targets.length) {
+    // Without this, anyone who prefers reduced motion sees content that never
+    // animates in — and therefore stays invisible.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      targets.forEach((target) => target.classList.add('reveal-visible'));
       return;
     }
 
@@ -104,29 +89,25 @@ const Home: React.FC = () => {
           }
         });
       },
-      {
-        threshold: 0.15,
-        rootMargin: '0px 0px -10% 0px',
-      },
+      { threshold: 0.15, rootMargin: '0px 0px -10% 0px' },
     );
 
     targets.forEach((target) => observer.observe(target));
-
     return () => observer.disconnect();
   }, []);
 
-  const current = testimonials[activeTestimonial];
+  const current = VISIBLE_TESTIMONIALS[activeTestimonial];
 
   return (
     <>
       <Seo
-        title="Private Piano & Voice Lessons in Beverly Hills, Calabasas & West LA | Andrea Coutinho"
-        description="Premium in-home piano, voice, music theory and songwriting lessons with Andrea Coutinho. Serving Beverly Hills, Hidden Hills, Calabasas, Brentwood, Bel Air, Pacific Palisades and the LA Westside."
-        path="/"
+        title={HOME_META.title}
+        description={HOME_META.description}
+        path={HOME_META.path}
+        jsonLd={[personSchema(), faqSchema(FAQS)]}
       />
 
       <section className="landing-hero">
-        {/* Background image + gradient overlay */}
         <div className="landing-hero-background" aria-hidden="true">
           <img
             src={andreaHero}
@@ -138,7 +119,6 @@ const Home: React.FC = () => {
           <div className="landing-hero-gradient" />
         </div>
 
-        {/* Foreground content */}
         <div className="landing-hero-overlay">
           <div className="container">
             <div className="landing-hero-content">
@@ -146,17 +126,13 @@ const Home: React.FC = () => {
                 Andrea Coutinho &mdash; Voice &middot; Piano &middot; Guitar &middot; Music Theory &middot; Songwriting
               </p>
 
+              {/* The heading text is always present in the DOM and revealed
+                  with a CSS clip animation. It used to be typed in character
+                  by character from an empty string, which meant the h1 was
+                  empty in the initial render — invisible to anything that
+                  snapshots the page before the animation finishes. */}
               <h1 className="landing-hero-heading">
-                <span>
-                  {displayedHeading}
-                  <span
-                    className={
-                      'type-cursor' + (isTyping ? ' type-cursor-active' : '')
-                    }
-                  >
-                    |
-                  </span>
-                </span>
+                <span className="hero-typed">{typedHeading}</span>
                 <em className="hero-fade hero-fade-delay-1">
                   in the comfort of your home
                 </em>
@@ -179,6 +155,21 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Credibility strip — Berklee training was previously buried on the
+          About page, well below the point where most visitors decide. */}
+      <section className="credentials-band">
+        <div className="container">
+          <ul className="credentials-list">
+            {credentials.map((item) => (
+              <li key={item.label} className="credential">
+                <span className="credential-value">{item.value}</span>
+                <span className="credential-label">{item.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section className="section services-section">
         <div className="container">
           <div className="section-header reveal">
@@ -190,24 +181,15 @@ const Home: React.FC = () => {
           </div>
 
           <div className="services-grid reveal-stagger">
-            <div className="service-item reveal">
-              <img src={microphoneIcon} alt="Private voice lessons in Los Angeles" className="service-icon" loading="lazy" decoding="async" width="320" height="321" />
-              <h3 className="service-title">Voice Lessons</h3>
-            </div>
-
-            <div className="service-item reveal">
-              <img src={pianoIcon} alt="In-home piano lessons in Los Angeles" className="service-icon" loading="lazy" decoding="async" width="320" height="357" />
-              <h3 className="service-title">Piano Lessons</h3>
-            </div>
-
-            <div className="service-item reveal">
-              <img src={musicNoteIcon} alt="Music theory lessons" className="service-icon" loading="lazy" decoding="async" width="320" height="377" />
-              <h3 className="service-title">Music Theory</h3>
-            </div>
-            <div className="service-item reveal">
-              <img src={songwritingIcon} alt="Songwriting coaching" className="service-icon" loading="lazy" decoding="async" width="320" height="265" />
-              <h3 className="service-title">Songwriting</h3>
-            </div>
+            {services.map(({ title, Icon, blurb }) => (
+              <div className="service-item reveal" key={title}>
+                <span className="service-icon-frame">
+                  <Icon className="service-icon-svg" />
+                </span>
+                <h3 className="service-title">{title}</h3>
+                <p className="service-blurb">{blurb}</p>
+              </div>
+            ))}
           </div>
 
           <p className="services-note reveal">
@@ -216,62 +198,89 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section className="section testimonials-section">
+      <section className="section process-section">
         <div className="container">
           <div className="section-header reveal">
-            <p className="eyebrow">Testimonials</p>
-            <h2 className="section-title">What students are saying</h2>
+            <p className="eyebrow">How it works</p>
+            <h2 className="section-title">Starting lessons is straightforward</h2>
           </div>
 
-          <div
-            className="testimonial-carousel reveal"
-            onMouseEnter={() => setCarouselPaused(true)}
-            onMouseLeave={() => setCarouselPaused(false)}
-          >
-            <button
-              type="button"
-              className="carousel-arrow carousel-arrow-prev"
-              aria-label="Previous testimonial"
-              onClick={showPrev}
-            >
-              &#8249;
-            </button>
-
-            <figure className="testimonial-slide" key={activeTestimonial}>
-              <blockquote className="testimonial-quote">{current.quote}</blockquote>
-              <figcaption className="testimonial-meta">
-                <span className="testimonial-name">{current.name}</span>
-                <span className="testimonial-role">{current.role}</span>
-              </figcaption>
-            </figure>
-
-            <button
-              type="button"
-              className="carousel-arrow carousel-arrow-next"
-              aria-label="Next testimonial"
-              onClick={showNext}
-            >
-              &#8250;
-            </button>
-
-            <div className="testimonial-dots" role="tablist" aria-label="Choose testimonial">
-              {testimonials.map((item, index) => (
-                <button
-                  key={item.name}
-                  type="button"
-                  role="tab"
-                  aria-selected={index === activeTestimonial}
-                  aria-label={`Show testimonial ${index + 1}`}
-                  className={
-                    'testimonial-dot' + (index === activeTestimonial ? ' is-active' : '')
-                  }
-                  onClick={() => setActiveTestimonial(index)}
-                />
-              ))}
-            </div>
-          </div>
+          <ol className="process-list reveal-stagger">
+            {process.map((item) => (
+              <li className="process-item reveal" key={item.step}>
+                <span className="process-step">{item.step}</span>
+                <h3 className="process-title">{item.title}</h3>
+                <p className="process-body">{item.body}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
+
+      {testimonialCount > 0 && current && (
+        <section className="section testimonials-section">
+          <div className="container">
+            <div className="section-header reveal">
+              <p className="eyebrow">Testimonials</p>
+              <h2 className="section-title">What students are saying</h2>
+            </div>
+
+            <div
+              className="testimonial-carousel reveal"
+              onMouseEnter={() => setCarouselPaused(true)}
+              onMouseLeave={() => setCarouselPaused(false)}
+            >
+              {testimonialCount > 1 && (
+                <button
+                  type="button"
+                  className="carousel-arrow carousel-arrow-prev"
+                  aria-label="Previous testimonial"
+                  onClick={showPrev}
+                >
+                  &#8249;
+                </button>
+              )}
+
+              <figure className="testimonial-slide" key={activeTestimonial}>
+                <blockquote className="testimonial-quote">{current.quote}</blockquote>
+                <figcaption className="testimonial-meta">
+                  <span className="testimonial-name">{current.name}</span>
+                  <span className="testimonial-role">{current.role}</span>
+                </figcaption>
+              </figure>
+
+              {testimonialCount > 1 && (
+                <button
+                  type="button"
+                  className="carousel-arrow carousel-arrow-next"
+                  aria-label="Next testimonial"
+                  onClick={showNext}
+                >
+                  &#8250;
+                </button>
+              )}
+
+              {testimonialCount > 1 && (
+                <div className="testimonial-dots" role="tablist" aria-label="Choose testimonial">
+                  {VISIBLE_TESTIMONIALS.map((item, index) => (
+                    <button
+                      key={item.name}
+                      type="button"
+                      role="tab"
+                      aria-selected={index === activeTestimonial}
+                      aria-label={`Show testimonial ${index + 1}`}
+                      className={
+                        'testimonial-dot' + (index === activeTestimonial ? ' is-active' : '')
+                      }
+                      onClick={() => setActiveTestimonial(index)}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="section areas-section">
         <div className="container">
@@ -285,9 +294,9 @@ const Home: React.FC = () => {
           </div>
 
           <ul className="areas-list reveal">
-            {teachingAreas.map((area) => (
-              <li key={area} className="areas-list-item">
-                {area}
+            {AREAS.map((area) => (
+              <li key={area.slug} className="areas-list-item">
+                <Link to={`/piano-lessons/${area.slug}`}>{area.name}</Link>
               </li>
             ))}
           </ul>
@@ -296,6 +305,30 @@ const Home: React.FC = () => {
             <Link to="/contact" className="btn btn-ghost">
               Check availability in your area
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section faq-section">
+        <div className="container">
+          <div className="section-header reveal">
+            <p className="eyebrow">Questions</p>
+            <h2 className="section-title">Before you book</h2>
+            <p className="section-subtitle">
+              The things parents and students most often want to know first.
+            </p>
+          </div>
+
+          <div className="faq-list reveal">
+            {FAQS.map((faq) => (
+              <details className="faq-item" key={faq.question}>
+                <summary className="faq-question">
+                  <span>{faq.question}</span>
+                  <span className="faq-marker" aria-hidden="true" />
+                </summary>
+                <p className="faq-answer">{faq.answer}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>

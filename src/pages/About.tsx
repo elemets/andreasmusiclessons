@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import andreaOnWater from '../assets/AndreaOnWater.jpeg';
 import andreaAtPiano from '../assets/AndreaAtPiano.jpeg';
 import Seo from '../components/Seo';
+import { personSchema, breadcrumbSchema } from '../data/schema';
+import { ABOUT_META } from '../data/routes';
 
 const teacherName = 'Andrea';
 
@@ -43,9 +45,16 @@ const About: React.FC = () => {
   return (
     <section className="section section-narrow">
       <Seo
-        title="About Andrea Coutinho | Berklee-Trained Piano & Voice Teacher in Los Angeles"
-        description="Andrea Coutinho is a Berklee College of Music graduate teaching piano, voice, music theory and songwriting in students' homes across Beverly Hills, Calabasas, Brentwood and LA's Westside."
-        path="/about"
+        title={ABOUT_META.title}
+        description={ABOUT_META.description}
+        path={ABOUT_META.path}
+        jsonLd={[
+          personSchema(),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'About Andrea', path: '/about' },
+          ]),
+        ]}
       />
       <div className="container">
         <div className="about-layout">

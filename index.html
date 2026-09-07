@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#faf8f4" />
     <link rel="icon" type="image/png" href="/AndreaMusicCoachLogoNoText.png" />
     <link rel="apple-touch-icon" href="/AndreaMusicCoachLogoNoText.png" />
 
@@ -28,7 +29,10 @@
       content="Premium in-home music lessons across LA's Westside: piano, voice, music theory, and songwriting — Beverly Hills, Hidden Hills, Calabasas, Brentwood and beyond."
     />
     <meta property="og:url" content="https://andreacoutinho.com/" />
-    <meta property="og:image" content="https://andreacoutinho.com/AndreaMusicCoachLogoNoText.png" />
+    <meta property="og:image" content="https://andreacoutinho.com/og-image.jpg" />
+    <meta property="og:image:width" content="1920" />
+    <meta property="og:image:height" content="825" />
+    <meta property="og:image:alt" content="Andrea Coutinho, private piano and voice teacher in Los Angeles" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
@@ -38,7 +42,7 @@
       name="twitter:description"
       content="Premium in-home music lessons across LA's Westside: piano, voice, music theory, and songwriting — Beverly Hills, Hidden Hills, Calabasas, Brentwood and beyond."
     />
-    <meta name="twitter:image" content="https://andreacoutinho.com/AndreaMusicCoachLogoNoText.png" />
+    <meta name="twitter:image" content="https://andreacoutinho.com/og-image.jpg" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -48,7 +52,13 @@
       rel="stylesheet"
     />
 
-    <!-- Structured data: local music teacher -->
+    <!-- Structured data: local music teacher.
+         TODO: fill "sameAs" below with the Google Business Profile URL and any
+         Instagram / YouTube / LinkedIn profiles. Those links are how Google
+         connects this site to the Business Profile, which is the single
+         biggest local-ranking factor for a service like this. Leave the array
+         empty until you have real URLs — placeholder strings would make the
+         structured data invalid. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -60,7 +70,7 @@
         "url": "https://andreacoutinho.com",
         "telephone": "+1-770-891-8775",
         "email": "music@andreacoutinho.com",
-        "image": "https://andreacoutinho.com/AndreaMusicCoachLogoNoText.png",
+        "image": "https://andreacoutinho.com/og-image.jpg",
         "logo": "https://andreacoutinho.com/AndreaMusicCoachLogoNoText.png",
         "priceRange": "$$$",
         "address": {
@@ -105,6 +115,21 @@
     </script>
   </head>
   <body>
+    <!-- Netlify Forms detection stub: the real form is rendered by React on
+         /contact, which Netlify's build-time HTML scan cannot see. Field names
+         here must match src/pages/Contact.tsx. Do not delete. -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="student" />
+      <input type="text" name="lessontype" />
+      <input type="text" name="experience" />
+      <input type="text" name="location" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

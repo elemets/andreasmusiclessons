@@ -668,18 +668,41 @@ a:hover {
   gap: 1.35rem;
 }
 
-.service-icon {
-  width: 9rem;
-  height: 9rem;
-  object-fit: contain;
-  opacity: 0.9;
-  filter: grayscale(1) contrast(0.95);
-  transition: transform 0.3s ease, opacity 0.3s ease;
+/* Line icons replaced the grayscale photographs. The frame is a thin brass
+   ring that fills on hover — restrained, and consistent across all four. */
+.service-icon-frame {
+  width: 6.5rem;
+  height: 6.5rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--gold);
+  background: var(--surface);
+  transition:
+    border-color 0.35s ease,
+    background 0.35s ease,
+    transform 0.35s ease;
 }
 
-.service-item:hover .service-icon {
-  opacity: 1;
+.service-icon-svg {
+  width: 3.1rem;
+  height: 3.1rem;
+  display: block;
+}
+
+.service-item:hover .service-icon-frame {
+  border-color: var(--gold-soft);
+  background: var(--surface-soft);
   transform: translateY(-4px);
+}
+
+.service-blurb {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 15rem;
+  margin: -0.55rem auto 0;
 }
 
 .service-title {
@@ -1370,7 +1393,10 @@ a:hover {
   }
 
   .services-grid {
-    grid-template-columns: minmax(0, 1fr);
+    /* Two compact columns read better than one tall stack now that the
+       icons are line art rather than large photographs. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.2rem 1.25rem;
   }
 
   /* Testimonial carousel: tighter gutters and smaller arrows on small screens */
@@ -1573,28 +1599,23 @@ a:hover {
   }
 }
 
-/* Typewriter cursor — display:none once typing ends so the invisible
-   character can't wrap onto its own (empty) line and leave a gap */
-.type-cursor {
-  display: none;
-  font-weight: 400;
-  color: var(--primary);
-  margin-left: 0.1em;
-}
-
-.type-cursor-active {
+/* Heading reveal.
+   The text is fully present in the markup and is uncovered left-to-right with
+   a stepped clip, which keeps the typewriter character of the original while
+   letting the h1 render complete for anything that reads the page before the
+   animation runs. steps() gives the staccato feel; a smooth wipe reads as a
+   slide instead. */
+.hero-typed {
   display: inline-block;
-  animation: cursor-blink 1s steps(2, start) infinite;
+  animation: hero-type-reveal 0.9s steps(22, end) both;
 }
 
-@keyframes cursor-blink {
-  0%,
-  50% {
-    opacity: 1;
+@keyframes hero-type-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
   }
-  50.01%,
-  100% {
-    opacity: 0;
+  to {
+    clip-path: inset(0 0 0 0);
   }
 }
 
@@ -1647,3 +1668,450 @@ a:hover {
 }
 
 
+
+/* ==============================================================
+   Additions: credentials band, process, FAQ, area pages, footer
+   ============================================================== */
+
+/* Accessibility: keyboard users can jump past the nav. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--primary);
+  color: var(--bg);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* Visually hidden honeypot field — must stay in the DOM for the spam trap. */
+.hidden-field {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.optional {
+  color: var(--text-muted);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+/* ------------------------------
+   Credentials band
+-------------------------------- */
+
+.credentials-band {
+  background: var(--primary);
+  color: var(--bg);
+  padding: 2.1rem 0;
+}
+
+.credentials-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.credential {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  position: relative;
+}
+
+.credential:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -0.75rem;
+  top: 12%;
+  height: 76%;
+  width: 1px;
+  background: rgba(250, 248, 244, 0.18);
+}
+
+.credential-value {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.7rem;
+  line-height: 1.1;
+  color: var(--gold-soft);
+}
+
+.credential-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(250, 248, 244, 0.72);
+}
+
+/* ------------------------------
+   Process
+-------------------------------- */
+
+.process-section {
+  background: var(--surface-soft);
+}
+
+.process-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem;
+}
+
+.process-item {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.4rem;
+}
+
+.process-step {
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: 0.7rem;
+}
+
+.process-title {
+  font-size: 1.4rem;
+  margin-bottom: 0.55rem;
+}
+
+.process-body {
+  font-size: 0.93rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* ------------------------------
+   FAQ
+-------------------------------- */
+
+.faq-section {
+  background: var(--surface);
+}
+
+.faq-list {
+  max-width: 46rem;
+  margin: 0 auto;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  cursor: pointer;
+  list-style: none;
+  padding: 1.25rem 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.28rem;
+  color: var(--primary);
+  transition: color 0.2s ease;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question:hover {
+  color: var(--gold);
+}
+
+/* Brass plus that becomes a minus when the item is open. */
+.faq-marker {
+  position: relative;
+  flex: none;
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.faq-marker::before,
+.faq-marker::after {
+  content: '';
+  position: absolute;
+  background: var(--gold);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.faq-marker::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.faq-marker::after {
+  left: 50%;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  transform: translateX(-50%);
+}
+
+.faq-item[open] .faq-marker::after {
+  transform: translateX(-50%) rotate(90deg);
+  opacity: 0;
+}
+
+.faq-answer {
+  padding: 0 0 1.4rem;
+  max-width: 40rem;
+  font-size: 0.94rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+/* ------------------------------
+   Area pages
+-------------------------------- */
+
+/* Deliberately quieter than the eyebrow directly beneath it — at the same
+   size and letter-spacing the two uppercase lines read as one muddled block. */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  opacity: 0.75;
+  margin-bottom: 2.9rem;
+}
+
+.breadcrumb [aria-current] {
+  color: var(--text-muted);
+}
+
+.breadcrumb a:hover {
+  color: var(--gold);
+}
+
+.area-page-header {
+  max-width: 46rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1.8rem;
+  margin-bottom: 2.6rem;
+}
+
+.area-page-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20rem;
+  gap: 3rem;
+  align-items: start;
+}
+
+.area-page-main > p {
+  margin-bottom: 1.15rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+/* Larger opening paragraph — gives the page an editorial entry point. */
+.lead-paragraph {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.32rem;
+  line-height: 1.62;
+  color: var(--text-main) !important;
+}
+
+.area-highlights {
+  margin: 1.8rem 0 2.2rem;
+}
+
+.area-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 2.2rem;
+}
+
+.area-page-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 6rem;
+}
+
+.area-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  font-size: 0.92rem;
+}
+
+.area-links a {
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.area-links a:hover {
+  color: var(--gold);
+}
+
+.area-links-inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  margin: 1.5rem 0;
+}
+
+.areas-list-item a {
+  transition: color 0.2s ease;
+}
+
+.areas-list-item a:hover {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+/* ------------------------------
+   Footer additions
+-------------------------------- */
+
+.footer {
+  padding: 2.6rem 0 1.5rem;
+}
+
+.footer-areas {
+  padding-bottom: 1.8rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.footer-heading {
+  font-size: 0.72rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.footer-area-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem 1.5rem;
+  font-size: 0.85rem;
+}
+
+.footer-area-links a {
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.footer-area-links a:hover {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+/* ------------------------------
+   Responsive — new sections
+-------------------------------- */
+
+@media (max-width: 960px) {
+  .area-page-body {
+    grid-template-columns: 1fr;
+  }
+
+  .area-page-aside {
+    position: static;
+  }
+
+  .process-list {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+
+  .footer-area-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .credentials-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.6rem 1rem;
+  }
+
+  /* The vertical rules only make sense in a single row. */
+  .credential:not(:last-child)::after {
+    display: none;
+  }
+
+  .service-icon-frame {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  .service-icon-svg {
+    width: 2.7rem;
+    height: 2.7rem;
+  }
+
+  .faq-question {
+    font-size: 1.15rem;
+  }
+
+  .lead-paragraph {
+    font-size: 1.18rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-area-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Honour reduced-motion for every decorative animation on the site. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-fade,
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
