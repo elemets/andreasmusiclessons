@@ -16,27 +16,35 @@ npm run lint
 
 ### Google Ads tracking
 
-The site-wide Google tag uses `AW-18434780037`. The app sends
+The site-wide Google tag configures Google Ads `AW-18434780037` and GA4
+`G-WKPWSHT6XL`. The app sends the following events explicitly to GA4:
 `contact_page_view` when entering `/contact` (including internal navigation)
 and `generate_lead` only after the form endpoint returns a successful response.
 These events do not include the visitor's form fields.
 
-**Google Ads conversion reporting still requires conversion labels.** Create
-a website conversion action for successful enquiries and copy the label after
-the slash in the event snippet's `send_to: 'AW-18434780037/LABEL'`. Set
-`VITE_GOOGLE_ADS_FORM_SUBMIT_LABEL` in the hosting build environment. Optionally
-create a separate contact-page visit action and set
-`VITE_GOOGLE_ADS_CONTACT_VIEW_LABEL`. See `.env.example`; rebuild and deploy
-after setting the labels. Without labels, the custom events still fire, but
-the app does not send Google Ads `conversion` events. This Ads tag does not
-provide a Google Analytics reporting property.
+**Finish conversion setup in Google Analytics and Google Ads after deployment:**
+
+1. Verify `generate_lead` in GA4 Realtime or DebugView after a successful test
+   enquiry, then mark it as a key event.
+2. Create/import a Google Ads conversion from that GA4 `generate_lead` event
+   and make it the primary lead action. This route needs no Ads conversion label.
+3. Rename the existing "Submit lead form" action that triggers on
+   "Page load: /contact" to "Contact page visit" and make it secondary.
+   It measures visits, not successful enquiries.
+
+The GA4 config sends the initial page view. Keep automatic page views on
+browser history changes enabled for internal navigation. The separate
+`contact_page_view` event identifies entries to the contact page; it is not
+another `page_view`. Automatically detected `form_submit` events are not used
+as the successful-enquiry conversion. Avoid importing both an automatic form
+event and `generate_lead` as primary conversions for the same enquiry.
 
 After deployment, use Google Tag Assistant to check a direct contact-page
 visit, navigation there from the home page, and a successful test submission.
 A rejected/failed submission must not emit `generate_lead` or its conversion.
 Confirm the test enquiry arrives in Netlify Forms as well.
 
-Google's setup reference: https://support.google.com/google-ads/answer/7548399
+Google's setup reference: https://support.google.com/google-ads/answer/2375435
 
 These are the highest-value items left, roughly in order of impact.
 
