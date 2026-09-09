@@ -26,6 +26,7 @@ import { BUSINESS } from '../data/site';
 import { FAQS } from '../data/faqs';
 import { faqSchema } from '../data/schema';
 import { CONTACT_META } from '../data/routes';
+import { trackContactEvent } from '../lib/tracking';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -58,6 +59,7 @@ const Contact: React.FC = () => {
 
       setStatus('success');
       form.reset();
+      trackContactEvent('generate_lead');
     } catch (error) {
       // Surface the failure rather than pretending it worked — a visitor who
       // sees an error will email instead, and that lead survives.

@@ -14,6 +14,30 @@ npm run lint
 
 ## Things that still need a human
 
+### Google Ads tracking
+
+The site-wide Google tag uses `AW-18434780037`. The app sends
+`contact_page_view` when entering `/contact` (including internal navigation)
+and `generate_lead` only after the form endpoint returns a successful response.
+These events do not include the visitor's form fields.
+
+**Google Ads conversion reporting still requires conversion labels.** Create
+a website conversion action for successful enquiries and copy the label after
+the slash in the event snippet's `send_to: 'AW-18434780037/LABEL'`. Set
+`VITE_GOOGLE_ADS_FORM_SUBMIT_LABEL` in the hosting build environment. Optionally
+create a separate contact-page visit action and set
+`VITE_GOOGLE_ADS_CONTACT_VIEW_LABEL`. See `.env.example`; rebuild and deploy
+after setting the labels. Without labels, the custom events still fire, but
+the app does not send Google Ads `conversion` events. This Ads tag does not
+provide a Google Analytics reporting property.
+
+After deployment, use Google Tag Assistant to check a direct contact-page
+visit, navigation there from the home page, and a successful test submission.
+A rejected/failed submission must not emit `generate_lead` or its conversion.
+Confirm the test enquiry arrives in Netlify Forms as well.
+
+Google's setup reference: https://support.google.com/google-ads/answer/7548399
+
 These are the highest-value items left, roughly in order of impact.
 
 ### 1. Confirm the contact form is delivering
