@@ -27,7 +27,7 @@ export const HOME_META: RouteMeta = {
   priority: 1.0,
   staticHeading: 'Private music coaching in the comfort of your home',
   staticBody:
-    'Premium one-on-one piano, voice, music theory and songwriting lessons with Andrea Coutinho, a Berklee College of Music graduate. Lessons are taught in your own home across Beverly Hills, Hidden Hills, Calabasas, Brentwood, Bel Air, Pacific Palisades, Santa Monica and Malibu, for children from age seven, teenagers and adults.',
+    'Premium one-on-one piano, voice, music theory and songwriting lessons with Andrea Coutinho, a Berklee College of Music graduate. Lessons are taught in your own home across Beverly Hills, Hidden Hills, Calabasas, Brentwood, Bel Air, Pacific Palisades and Santa Monica, for children from age seven, teenagers and adults.',
 };
 
 export const ABOUT_META: RouteMeta = {

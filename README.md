@@ -80,7 +80,7 @@ entirely by the Business Profile, not by the website.
 
 - Create/claim it as a **service-area business** (no public street address),
   listing Beverly Hills, Bel Air, Hidden Hills, Calabasas, Brentwood, Pacific
-  Palisades, Santa Monica and Malibu.
+  Palisades and Santa Monica.
 - Category: *Music instructor* (add *Piano instructor*, *Singing teacher*).
 - Then paste the profile URL, plus any Instagram / YouTube / LinkedIn, into the
   `sameAs` array in `index.html`. That array is currently empty on purpose:

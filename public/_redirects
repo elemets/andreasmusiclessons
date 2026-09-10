@@ -1,1 +1,5 @@
+# Malibu lessons were discontinued and the area page removed. The URL was live
+# and indexed, so send it to the home page permanently rather than 404-ing it.
+/piano-lessons/malibu    /             301!
+
 /*    /index.html   200

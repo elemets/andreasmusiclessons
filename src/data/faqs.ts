@@ -17,7 +17,7 @@ export const FAQS: Faq[] = [
   {
     question: 'Do lessons take place at our home?',
     answer:
-      'Yes. All lessons are taught in the student’s own home across Beverly Hills, Bel Air, Hidden Hills, Calabasas, Brentwood, Pacific Palisades, Santa Monica and Malibu. Learning and practising on the same instrument makes a noticeable difference, and it removes a round trip from your week.',
+      'Yes. All lessons are taught in the student’s own home across Beverly Hills, Bel Air, Hidden Hills, Calabasas, Brentwood, Pacific Palisades and Santa Monica. Learning and practising on the same instrument makes a noticeable difference, and it removes a round trip from your week.',
   },
   {
     question: 'How much do lessons cost?',

@@ -189,7 +189,10 @@ a:hover {
 }
 
 .navbar .container {
-  max-width: 70%;
+  /* 70% on wide monitors, but never narrower than the standard content column
+     and never wider than the viewport — at laptop widths the flat 70% squeezed
+     the nav badly enough that the brand text collided with the links. */
+  max-width: min(100%, max(70%, 1100px));
   padding-left: 0.75rem;
 }
 
@@ -197,7 +200,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: 4.5rem;
+  min-height: 4.5rem;
 }
 
 .brand {
@@ -206,6 +209,8 @@ a:hover {
   gap: 0.75rem;
   text-decoration: none;
   margin-left: -0.6rem;
+  min-width: 0;
+  flex: 0 1 auto;
 }
 
 .brand:hover {
@@ -225,17 +230,26 @@ a:hover {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  min-width: 0;
 }
 
 .brand-title {
   font-weight: 600;
   font-size: 0.87rem;
   color: var(--primary);
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .brand-subtitle {
   font-size: 0.8rem;
   color: var(--text-muted);
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nav-desktop {
@@ -243,6 +257,8 @@ a:hover {
   align-items: center;
   gap: 1.75rem;
   margin-left: auto;
+  flex-shrink: 0;
+  padding-left: 1rem;
 }
 
 .nav-links {
@@ -1340,7 +1356,6 @@ a:hover {
   }
 
   .brand {
-    min-width: 0;
     flex: 1 1 auto;
     margin-left: 0;
     gap: 0.6rem;
@@ -1352,15 +1367,11 @@ a:hover {
   }
 
   .brand-text {
-    min-width: 0;
     flex: 1 1 auto;
   }
 
   .brand-title {
     font-size: 0.82rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .brand-subtitle {

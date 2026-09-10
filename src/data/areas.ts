@@ -140,24 +140,6 @@ export const AREAS: ServedArea[] = [
       'Piano, voice and theory available in the same lesson track',
     ],
   },
-  {
-    slug: 'malibu',
-    name: 'Malibu',
-    placeName: 'Malibu, CA',
-    title: 'Piano & Voice Lessons in Malibu | Andrea Coutinho',
-    description:
-      'In-home piano and voice lessons in Malibu with Berklee graduate Andrea Coutinho. Private weekly lessons for children, teens and adults, taught at your home.',
-    heading: 'Private piano & voice lessons in Malibu',
-    intro:
-      'Malibu is spread thin along the coast, and for most families here the nearest music studio is a serious drive in traffic. Andrea teaches at home instead — piano, voice, music theory and songwriting, one student at a time, at a regular weekly slot.',
-    detail:
-      'Because of the distance, Malibu lessons are best arranged as a consistent standing appointment, and Andrea keeps only a limited number of slots out this way. Longer lesson lengths often work better here than a short weekly visit, and that is worth discussing when you get in touch so the arrangement genuinely suits both the student and the drive.',
-    highlights: [
-      'A limited number of standing Malibu slots each week',
-      'Longer lesson formats available and often a better fit',
-      'Taught at home, with no drive down the coast',
-    ],
-  },
 ];
 
 export const AREA_BY_SLUG = new Map(AREAS.map((area) => [area.slug, area]));
