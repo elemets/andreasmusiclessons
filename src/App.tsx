@@ -3,7 +3,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import ScrollToTop from './components/ScrollToTop';
+import ScrollManager from './components/ScrollManager';
 import ContactTracking from './components/ContactTracking';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -17,7 +17,7 @@ const App: React.FC = () => {
       <a href="#main" className="skip-link">
         Skip to content
       </a>
-      <ScrollToTop />
+      <ScrollManager />
       <ContactTracking />
       <Navbar />
       <main className="main-content" id="main">

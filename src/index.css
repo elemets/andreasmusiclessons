@@ -640,6 +640,13 @@ a:hover {
   background: #f8f8f8;
 }
 
+/* Anchor targets for in-page links (/#faq, /#testimonials …). The navbar is
+   sticky and 4.5rem tall, so without this the section heading lands underneath
+   it and the visitor appears to arrive mid-section. */
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(24px);
@@ -667,6 +674,10 @@ a:hover {
 
 .reveal-stagger .reveal:nth-child(4) {
   transition-delay: 420ms;
+}
+
+.reveal-stagger .reveal:nth-child(5) {
+  transition-delay: 520ms;
 }
 
 .services-grid {

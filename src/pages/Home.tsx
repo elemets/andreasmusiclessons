@@ -172,7 +172,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section className="section services-section">
+      <section className="section services-section" id="lessons">
         <div className="container">
           <div className="section-header reveal">
             <p className="eyebrow">Offerings</p>
@@ -200,7 +200,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section className="section process-section">
+      <section className="section process-section" id="how-it-works">
         <div className="container">
           <div className="section-header reveal">
             <p className="eyebrow">How it works</p>
@@ -220,7 +220,7 @@ const Home: React.FC = () => {
       </section>
 
       {testimonialCount > 0 && current && (
-        <section className="section testimonials-section">
+        <section className="section testimonials-section" id="testimonials">
           <div className="container">
             <div className="section-header reveal">
               <p className="eyebrow">Testimonials</p>
@@ -284,7 +284,7 @@ const Home: React.FC = () => {
         </section>
       )}
 
-      <section className="section areas-section">
+      <section className="section areas-section" id="areas">
         <div className="container">
           <div className="section-header reveal">
             <p className="eyebrow">Where Andrea teaches</p>
@@ -311,7 +311,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section className="section faq-section">
+      <section className="section faq-section" id="faq">
         <div className="container">
           <div className="section-header reveal">
             <p className="eyebrow">Questions</p>

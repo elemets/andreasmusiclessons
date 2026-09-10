@@ -46,6 +46,24 @@ Confirm the test enquiry arrives in Netlify Forms as well.
 
 Google's setup reference: https://support.google.com/google-ads/answer/2375435
 
+### Home page anchors (for ad sitelinks)
+
+Each home page section has a stable `id`, so these URLs deep-link straight to it:
+
+| URL | Section |
+| --- | --- |
+| `/#lessons` | Offerings — voice, piano, guitar, theory, songwriting |
+| `/#how-it-works` | The three-step process |
+| `/#testimonials` | Student testimonials |
+| `/#areas` | Neighbourhoods served |
+| `/#faq` | Frequently asked questions |
+
+`ScrollManager` performs the jump after React has painted, because a fragment
+cannot resolve against a section that has not rendered yet. Keep the ids stable
+once they are live in ad assets — renaming one silently sends that sitelink to
+the top of the page instead. `#testimonials` only exists while at least one
+testimonial is visible in `src/data/testimonials.ts`.
+
 These are the highest-value items left, roughly in order of impact.
 
 ### 1. Confirm the contact form is delivering
