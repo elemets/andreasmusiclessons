@@ -23,11 +23,11 @@ export const HOME_META: RouteMeta = {
   title:
     'Private Piano & Voice Lessons in Beverly Hills, Calabasas & West LA | Andrea Coutinho',
   description:
-    'Premium in-home piano, voice, music theory and songwriting lessons with Andrea Coutinho. Serving Beverly Hills, Hidden Hills, Calabasas, Brentwood, Bel Air, Pacific Palisades and the LA Westside.',
+    'Premium in-home piano, voice, guitar, music theory and songwriting lessons with Andrea Coutinho. Serving Beverly Hills, Hidden Hills, Calabasas, Brentwood, Bel Air, Pacific Palisades and the LA Westside.',
   priority: 1.0,
   staticHeading: 'Private music coaching in the comfort of your home',
   staticBody:
-    'Premium one-on-one piano, voice, music theory and songwriting lessons with Andrea Coutinho, a Berklee College of Music graduate. Lessons are taught in your own home across Beverly Hills, Hidden Hills, Calabasas, Brentwood, Bel Air, Pacific Palisades and Santa Monica, for children from age seven, teenagers and adults.',
+    'Premium one-on-one piano, voice, guitar, music theory and songwriting lessons with Andrea Coutinho, a Berklee College of Music graduate. Lessons are taught in your own home across Beverly Hills, Hidden Hills, Calabasas, Brentwood, Bel Air, Pacific Palisades and Santa Monica, for children from age seven, teenagers and adults.',
 };
 
 export const ABOUT_META: RouteMeta = {
@@ -35,7 +35,7 @@ export const ABOUT_META: RouteMeta = {
   title:
     'About Andrea Coutinho | Berklee-Trained Piano & Voice Teacher in Los Angeles',
   description:
-    "Andrea Coutinho is a Berklee College of Music graduate teaching piano, voice, music theory and songwriting in students' homes across Beverly Hills, Calabasas, Brentwood and LA's Westside.",
+    "Andrea Coutinho is a Berklee College of Music graduate teaching piano, voice, guitar, music theory and songwriting in students' homes across Beverly Hills, Calabasas, Brentwood and LA's Westside.",
   priority: 0.8,
   staticHeading: 'Meet Andrea',
   staticBody:

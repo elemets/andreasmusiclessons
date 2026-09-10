@@ -10,6 +10,11 @@ export type Faq = { question: string; answer: string };
 
 export const FAQS: Faq[] = [
   {
+    question: 'What instruments do you teach?',
+    answer:
+      'Piano, voice and guitar, along with music theory and songwriting. Piano and voice are what most students come to Andrea for and where the bulk of her own training sits; guitar is taught alongside them. Theory and songwriting are woven into a lesson track rather than booked separately.',
+  },
+  {
     question: 'What ages do you teach?',
     answer:
       'Andrea teaches students from age seven upwards, including teenagers and adults. Seven is roughly the point where a child can hold focus for a full lesson and practise between them, which is what makes progress possible.',
@@ -25,9 +30,9 @@ export const FAQS: Faq[] = [
       'Rates depend on lesson length, location and how far Andrea travels. She will give you a clear, all-in figure during the initial consultation call, before you commit to anything.',
   },
   {
-    question: 'Do we need a piano at home?',
+    question: 'Do we need an instrument at home?',
     answer:
-      'For piano lessons you need an instrument to practise on. An acoustic piano is ideal, but a full-size weighted digital keyboard is a perfectly good starting point. Andrea is happy to advise on what to buy before you spend anything.',
+      'For piano lessons you need something to practise on. An acoustic piano is ideal, but a full-size weighted digital keyboard is a perfectly good starting point. For guitar, any acoustic or electric that holds its tuning is enough to begin with. Andrea is happy to advise on what to buy before you spend anything.',
   },
   {
     question: 'How long is a lesson, and how often?',

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import andreaHero from '../assets/hero-other-2.jpg';
 import Seo from '../components/Seo';
 import {
+  GuitarIcon,
   MicrophoneIcon,
   PianoIcon,
   SongwritingIcon,
@@ -18,6 +19,7 @@ import { HOME_META } from '../data/routes';
 const services = [
   { title: 'Voice Lessons', Icon: MicrophoneIcon, blurb: 'Breath, tone and range built patiently, for singers at any level.' },
   { title: 'Piano Lessons', Icon: PianoIcon, blurb: 'Technique, reading and repertoire on your own instrument at home.' },
+  { title: 'Guitar Lessons', Icon: GuitarIcon, blurb: 'Chords, accompaniment and the songs you actually want to play.' },
   { title: 'Music Theory', Icon: TheoryIcon, blurb: 'The grammar behind the music, taught so it is genuinely usable.' },
   { title: 'Songwriting', Icon: SongwritingIcon, blurb: 'Melody, lyric and structure, from a Berklee composition graduate.' },
 ];

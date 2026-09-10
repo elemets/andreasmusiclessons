@@ -1,6 +1,6 @@
 # Andrea Coutinho — Music Coaching
 
-Marketing site for private in-home piano, voice, music theory and songwriting
+Marketing site for private in-home piano, voice, guitar, music theory and songwriting
 lessons across the Los Angeles Westside. React + TypeScript + Vite.
 
 ```bash

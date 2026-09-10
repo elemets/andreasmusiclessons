@@ -48,6 +48,30 @@ export const MicrophoneIcon: React.FC<IconProps> = ({ className }) => (
   </svg>
 );
 
+/** Acoustic guitar, drawn face-on. */
+export const GuitarIcon: React.FC<IconProps> = ({ className }) => (
+  <svg {...base} className={className}>
+    {/* Headstock and neck */}
+    <rect x="27.6" y="5.5" width="8.8" height="7.4" rx="1.6" />
+    <path d="M29.6 12.9v20.8M34.4 12.9v20.8" />
+    {/* Tuning pegs */}
+    <g fill="currentColor" stroke="none" opacity="0.82">
+      <circle cx="25.7" cy="8" r="1" />
+      <circle cx="25.7" cy="10.9" r="1" />
+      <circle cx="38.3" cy="8" r="1" />
+      <circle cx="38.3" cy="10.9" r="1" />
+    </g>
+    {/* Body: upper bout, waist, lower bout */}
+    <path d="M32 33.6c5.5 0 9.5 2 9.8 6 .2 3-3 4.3-3 6.5 0 2.5 4.7 4 4.7 7.5 0 3.5-5 6-11.5 6s-11.5-2.5-11.5-6c0-3.5 4.7-5 4.7-7.5 0-2.2-3.2-3.5-3-6.5.3-4 4.3-6 9.8-6Z" />
+    <circle cx="32" cy="46.4" r="3.7" />
+    {/* Strings run the length of the neck; bridge sits below the soundhole. */}
+    <path d="M30.4 13.5v20M32 13.5v20M33.6 13.5v20" opacity="0.5" />
+    <g fill="currentColor" stroke="none" opacity="0.82">
+      <rect x="27.4" y="53" width="9.2" height="2.2" rx="0.9" />
+    </g>
+  </svg>
+);
+
 /** Staff and note — music theory. */
 export const TheoryIcon: React.FC<IconProps> = ({ className }) => (
   <svg {...base} className={className}>

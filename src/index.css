@@ -671,7 +671,7 @@ a:hover {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1.5rem;
   text-align: center;
   margin-top: 0.9rem;
@@ -685,7 +685,7 @@ a:hover {
 }
 
 /* Line icons replaced the grayscale photographs. The frame is a thin brass
-   ring that fills on hover — restrained, and consistent across all four. */
+   ring that fills on hover — restrained, and consistent across the set. */
 .service-icon-frame {
   width: 6.5rem;
   height: 6.5rem;
@@ -1323,6 +1323,12 @@ a:hover {
 
   .services-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* An odd number of cards leaves the last one orphaned in a 2-up grid;
+     span it so it centres instead of hanging off the left column. */
+  .services-grid .service-item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 
   .about-layout {

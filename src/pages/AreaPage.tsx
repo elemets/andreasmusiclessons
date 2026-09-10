@@ -62,7 +62,7 @@ const AreaPage: React.FC = () => {
 
               <h2 className="about-subtitle">What Andrea teaches</h2>
               <p>
-                Piano, voice, music theory and songwriting, taught individually
+                Piano, voice, guitar, music theory and songwriting, taught individually
                 rather than in a fixed group syllabus. Students in {area.name}{' '}
                 range from children starting at age seven to adults returning to
                 an instrument after many years away.
@@ -100,7 +100,7 @@ const AreaPage: React.FC = () => {
                   </div>
                   <div className="definition-row">
                     <dt>Subjects</dt>
-                    <dd>Piano, voice, theory, songwriting</dd>
+                    <dd>Piano, voice, guitar, theory, songwriting</dd>
                   </div>
                   <div className="definition-row">
                     <dt>Ages</dt>

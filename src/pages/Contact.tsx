@@ -161,6 +161,7 @@ const Contact: React.FC = () => {
                   </option>
                   <option value="piano">Piano</option>
                   <option value="voice">Voice</option>
+                  <option value="guitar">Guitar</option>
                   <option value="both">Piano and voice</option>
                   <option value="theory">Music theory</option>
                   <option value="songwriting">Songwriting</option>

@@ -63,7 +63,7 @@ const About: React.FC = () => {
               <p className="eyebrow">About</p>
               <h1 className="section-title">Meet {teacherName}</h1>
               <p className="section-subtitle">
-               A dedicated music teacher and coach in Los Angeles, working with children and adults who want a thoughtful, structured approach to learning. Andrea's expertise lies in piano, voice, and songwriting.
+               A dedicated music teacher and coach in Los Angeles, working with children and adults who want a thoughtful, structured approach to learning. Andrea's expertise lies in piano, voice, and songwriting, and she teaches guitar as well.
               </p>
             </header>
 
@@ -74,7 +74,7 @@ const About: React.FC = () => {
 
             <h2 className="about-subtitle">About the lessons</h2>
             <p>
-              Andrea teaches piano and voice in students&apos; homes across Beverly Hills, Hidden Hills, Calabasas, Brentwood, and LA&apos;s Westside, blending technique, repertoire, and ear training in lessons tailored to each student — from children just starting out to adults rediscovering their craft. The pace adjusts to you; the standard stays high, and lessons work best for students ready to commit to regular practice and long-term growth.
+              Andrea teaches piano, voice and guitar in students&apos; homes across Beverly Hills, Hidden Hills, Calabasas, Brentwood, and LA&apos;s Westside, blending technique, repertoire, and ear training in lessons tailored to each student — from children just starting out to adults rediscovering their craft. The pace adjusts to you; the standard stays high, and lessons work best for students ready to commit to regular practice and long-term growth.
             </p>
 
             <h2 className="about-subtitle">Teaching approach</h2>
@@ -93,6 +93,7 @@ const About: React.FC = () => {
               <li>A student who wants to learn to sing, from amateur to advanced</li>
               <li>An adult beginner who values structure and quality</li>
               <li>Anyone who wants support with music theory or songwriting</li>
+              <li>A student picking up guitar, from a first chord to playing songs through</li>
               <li>Returning to piano after a break and want to refine your playing</li>
               <li>Open to consistent practice and long-term work</li>
             </ul>

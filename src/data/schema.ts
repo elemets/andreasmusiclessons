@@ -21,7 +21,7 @@ export const personSchema = (): Record<string, unknown> => ({
   name: BUSINESS.personName,
   jobTitle: 'Piano and Voice Teacher',
   description:
-    'Berklee College of Music composition graduate teaching piano, voice, music theory and songwriting in students’ homes across the Los Angeles Westside.',
+    'Berklee College of Music composition graduate teaching piano, voice, guitar, music theory and songwriting in students’ homes across the Los Angeles Westside.',
   url: `${SITE_URL}/about`,
   email: BUSINESS.email,
   telephone: BUSINESS.telephone,
@@ -29,7 +29,7 @@ export const personSchema = (): Record<string, unknown> => ({
     '@type': 'CollegeOrUniversity',
     name: 'Berklee College of Music',
   },
-  knowsAbout: ['Piano', 'Voice', 'Music Theory', 'Songwriting', 'Composition'],
+  knowsAbout: ['Piano', 'Voice', 'Guitar', 'Music Theory', 'Songwriting', 'Composition'],
   worksFor: { '@id': BUSINESS_ID },
 });
 
