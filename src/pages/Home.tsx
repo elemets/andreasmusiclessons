@@ -99,17 +99,23 @@ const Home: React.FC = () => {
 
       <section className="landing-hero">
         <div className="landing-hero-background" aria-hidden="true">
-          <img
-            src={andreaHero}
-            alt=""
-            className="landing-hero-image"
-            fetchPriority="high"
-            decoding="async"
-          />
+          {/* Only one of these is ever mounted. Stacking the still behind
+              the video made the hero flicker on scroll: the compositor
+              drops the video layer briefly and the darker still showed
+              through. The video's poster is this same image, so it
+              covers the pre-play and load-failure cases on its own. */}
+          {!showHeroVideo && (
+            <img
+              src={andreaHero}
+              alt=""
+              className="landing-hero-image"
+              fetchPriority="high"
+              decoding="async"
+            />
+          )}
           {showHeroVideo && (
             <video
               className="landing-hero-video"
-              poster={andreaHero}
               autoPlay
               muted
               loop

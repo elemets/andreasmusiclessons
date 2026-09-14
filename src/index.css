@@ -295,9 +295,8 @@ section[id] {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(241, 238, 231, 0.92);
+  background: rgba(241, 238, 231, 0.97);
   border-bottom: 1px solid var(--rule);
-  backdrop-filter: blur(8px);
   transition:
     background 0.3s ease,
     border-color 0.3s ease;
@@ -309,7 +308,6 @@ section[id] {
 .navbar-transparent {
   background: transparent;
   border-bottom-color: transparent;
-  backdrop-filter: none;
 }
 
 .navbar-transparent::before {
@@ -567,6 +565,7 @@ section[id] {
 .landing-hero-image,
 .landing-hero-video {
   position: absolute;
+  background: var(--ink);
   inset: 0;
   width: 100%;
   height: 100%;
@@ -574,11 +573,15 @@ section[id] {
   filter: none;
 }
 
-/* The still sits underneath as the poster and the fallback: if the
-   video is blocked, still loading, or the visitor is on a phone, this
-   is what shows. */
+/* Stock footage runs brighter and more saturated than the piano still,
+   which is what made the swap so visible. Graded down to the same low
+   key. Tune these three numbers if it wants to be darker still.
+   translateZ pins it to its own compositing layer so the browser does
+   not tear that layer down and rebuild it while the page scrolls. */
 .landing-hero-video {
   z-index: 1;
+  transform: translateZ(0);
+  filter: brightness(0.72) contrast(1.06) saturate(0.85);
 }
 
 .landing-hero-gradient {
@@ -1793,12 +1796,10 @@ section[id] {
     align-items: flex-start;
   }
 
-  /* Backdrop blur repaints every scroll frame on phones. Scoped so it
-     cannot override the transparent state over the hero video — both
-     selectors are one class deep, so this one would otherwise win on
-     source order alone. */
+  /* Scoped so it cannot override the transparent state over the hero
+     video: both selectors are one class deep, so this one would
+     otherwise win on source order alone. */
   .navbar:not(.navbar-transparent) {
-    backdrop-filter: none;
     background: rgba(241, 238, 231, 0.98);
   }
 }
