@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
               © {new Date().getFullYear()} {BUSINESS.name}
             </span>
             <span className="footer-note">
-              Inspiring confident musicians, one lesson at a time.
+              In-home piano, voice and guitar lessons across Los Angeles.
             </span>
           </div>
 

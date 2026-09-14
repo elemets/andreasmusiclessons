@@ -63,39 +63,39 @@ const About: React.FC = () => {
               <p className="eyebrow">About</p>
               <h1 className="section-title">Meet {teacherName}</h1>
               <p className="section-subtitle">
-               A dedicated music teacher and coach in Los Angeles, working with children and adults who want a thoughtful, structured approach to learning. Andrea's expertise lies in piano, voice, and songwriting, and she teaches guitar as well.
+               Andrea is a music teacher and coach in Los Angeles. She works with children and adults who want some structure in how they learn. Piano, voice and songwriting are her main subjects, and she teaches guitar too.
               </p>
             </header>
 
             <article className="about-main">
             <p className="muted">
-              Andrea holds a Bachelor of Music in Composition from Berklee College of Music. She has been playing piano and singing for 20 years and has been teaching privately for the last 4 years.
+              Andrea holds a Bachelor of Music in Composition from Berklee College of Music. She has been playing piano and singing for 20 years, and teaching privately for the last 4.
             </p>
 
             <h2 className="about-subtitle">About the lessons</h2>
             <p>
-              Andrea teaches piano, voice and guitar in students&apos; homes across Beverly Hills, Hidden Hills, Calabasas, Brentwood, and LA&apos;s Westside, blending technique, repertoire, and ear training in lessons tailored to each student — from children just starting out to adults rediscovering their craft. The pace adjusts to you; the standard stays high, and lessons work best for students ready to commit to regular practice and long-term growth.
+              Andrea teaches piano, voice and guitar in students&apos; homes across Beverly Hills, Hidden Hills, Calabasas, Brentwood and the rest of LA&apos;s Westside. Technique, repertoire and ear training are worked on together, and the balance shifts with the student: a child at the very beginning needs something different from an adult picking the instrument back up after a long break. The pace follows you, the standard does not drop, and lessons go best for students who are willing to practice between them.
             </p>
 
             <h2 className="about-subtitle">Teaching approach</h2>
             <ul className="checklist">
-              <li>Warm, calm, and supportive atmosphere</li>
-              <li>Clear, honest feedback without pressure or judgment</li>
-              <li>Intentional lesson plans catered to the individual student </li>
-              <li>Respect for your goals, taste, and schedule</li>
+              <li>A calm room to work in</li>
+              <li>Honest feedback, given without pressure or judgment</li>
+              <li>Lesson plans written for the individual student</li>
+              <li>Your goals, taste and schedule taken seriously</li>
             </ul>
 
             <h2 className="about-subtitle">Who lessons are for</h2>
-            <p>Andrea&apos;s teaching is a strong fit if you are:</p>
+            <p>Lessons tend to suit:</p>
             <ul className="checklist">
-              <li>A student who is serious about piano as a main activity</li>
-              <li>Any children who want support finding their unique musical expression</li>
-              <li>A student who wants to learn to sing, from amateur to advanced</li>
-              <li>An adult beginner who values structure and quality</li>
-              <li>Anyone who wants support with music theory or songwriting</li>
-              <li>A student picking up guitar, from a first chord to playing songs through</li>
-              <li>Returning to piano after a break and want to refine your playing</li>
-              <li>Open to consistent practice and long-term work</li>
+              <li>Students who are serious about piano as a main activity</li>
+              <li>Children who want help finding their own musical voice</li>
+              <li>Singers at any level, from amateur to advanced</li>
+              <li>Adult beginners who want structure and a high standard</li>
+              <li>Anyone who wants help with music theory or songwriting</li>
+              <li>Guitarists starting out, from a first chord to playing a song through</li>
+              <li>Pianists coming back after a break who want to sharpen up</li>
+              <li>Anyone willing to practice consistently over a long stretch</li>
             </ul>
             </article>
           </div>
@@ -161,7 +161,7 @@ const About: React.FC = () => {
                 </div>
                 <div className="definition-row">
                   <dt>Focus</dt>
-                  <dd>Thoughtful, high-quality study</dd>
+                  <dd>Careful, long-term study</dd>
                 </div>
               </dl>
             </div>
@@ -171,11 +171,11 @@ const About: React.FC = () => {
               <ul className="bullet-list">
                 <li>Weekly lessons reserved at a regular time</li>
                 <li>Commitment to home practice between lessons</li>
-                <li>Respectful and quiet space for in‑home lessons</li>
+                <li>A quiet space for the lesson at home</li>
                 <li>Clear communication around scheduling and travel</li>
               </ul>
               <p className="muted small-text">
-                A full policy document can be shared after your initial inquiry.
+                Andrea sends the full written policy after your first inquiry.
               </p>
             </div>
           </aside>

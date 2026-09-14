@@ -16,8 +16,8 @@ const NotFound: React.FC = () => (
         <p className="eyebrow">404</p>
         <h1 className="section-title">That page could not be found</h1>
         <p className="section-subtitle">
-          The link may be out of date. You can head back to the home page, or
-          jump straight to lessons in your neighbourhood.
+          The link may be out of date. Head back to the home page, or jump
+          straight to lessons in your neighborhood.
         </p>
       </header>
 

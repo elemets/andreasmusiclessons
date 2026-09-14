@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
           />
           <div className="brand-text">
             <span className="brand-title">{teacherName} Coutinho - Music Coaching</span>
-            <span className="brand-subtitle">Premium Music Lessons in Los Angeles.</span>
+            <span className="brand-subtitle">Private music lessons in Los Angeles</span>
           </div>
         </Link>
 

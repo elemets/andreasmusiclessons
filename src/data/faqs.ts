@@ -12,17 +12,17 @@ export const FAQS: Faq[] = [
   {
     question: 'What instruments do you teach?',
     answer:
-      'Piano, voice and guitar, along with music theory and songwriting. Piano and voice are what most students come to Andrea for and where the bulk of her own training sits; guitar is taught alongside them. Theory and songwriting are woven into a lesson track rather than booked separately.',
+      'Piano, voice and guitar, along with music theory and songwriting. Most students come to Andrea for piano or voice, which is where the bulk of her own training sits, and guitar is taught alongside them. Theory and songwriting are built into a student’s lessons, so there is nothing extra to book.',
   },
   {
     question: 'What ages do you teach?',
     answer:
-      'Andrea teaches students from age seven upwards, including teenagers and adults. Seven is roughly the point where a child can hold focus for a full lesson and practise between them, which is what makes progress possible.',
+      'Andrea teaches students from age seven upwards, including teenagers and adults. Seven is roughly the age at which a child can hold focus for a full lesson and do some practice in between.',
   },
   {
     question: 'Do lessons take place at our home?',
     answer:
-      'Yes. All lessons are taught in the student’s own home across Beverly Hills, Bel Air, Hidden Hills, Calabasas, Brentwood, Pacific Palisades and Santa Monica. Learning and practising on the same instrument makes a noticeable difference, and it removes a round trip from your week.',
+      'Yes. All lessons are taught in the student’s own home across Beverly Hills, Bel Air, Hidden Hills, Calabasas, Brentwood, Pacific Palisades and Santa Monica. Learning and practicing on the same instrument makes a noticeable difference, and it takes a round trip out of your week.',
   },
   {
     question: 'How much do lessons cost?',
@@ -32,7 +32,7 @@ export const FAQS: Faq[] = [
   {
     question: 'Do we need an instrument at home?',
     answer:
-      'For piano lessons you need something to practise on. An acoustic piano is ideal, but a full-size weighted digital keyboard is a perfectly good starting point. For guitar, any acoustic or electric that holds its tuning is enough to begin with. Andrea is happy to advise on what to buy before you spend anything.',
+      'For piano lessons you need something to practice on. An acoustic piano is ideal, but a full-size weighted digital keyboard is a perfectly good starting point. For guitar, any acoustic or electric that holds its tuning is enough to begin with. Andrea is happy to advise on what to buy before you spend anything.',
   },
   {
     question: 'How long is a lesson, and how often?',
@@ -42,7 +42,7 @@ export const FAQS: Faq[] = [
   {
     question: 'My child has never played before. Is that a problem?',
     answer:
-      'Not at all. Complete beginners are a large part of Andrea’s teaching, and the first lessons are built to get a student comfortable and playing something they enjoy quickly, rather than starting with months of dry exercises.',
+      'Not at all. Complete beginners are a large part of Andrea’s teaching. The first few lessons are built to get a student comfortable and playing something they enjoy early on.',
   },
   {
     question: 'What are your qualifications?',

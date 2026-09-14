@@ -23,11 +23,11 @@ export const HOME_META: RouteMeta = {
   title:
     'Private Piano & Voice Lessons in Beverly Hills, Calabasas & West LA | Andrea Coutinho',
   description:
-    'Premium in-home piano, voice, guitar, music theory and songwriting lessons with Andrea Coutinho. Serving Beverly Hills, Hidden Hills, Calabasas, Brentwood, Bel Air, Pacific Palisades and the LA Westside.',
+    'Private in-home piano, voice, guitar, music theory and songwriting lessons with Andrea Coutinho. Serving Beverly Hills, Hidden Hills, Calabasas, Brentwood, Bel Air, Pacific Palisades and the LA Westside.',
   priority: 1.0,
   staticHeading: 'Private music coaching in the comfort of your home',
   staticBody:
-    'Premium one-on-one piano, voice, guitar, music theory and songwriting lessons with Andrea Coutinho, a Berklee College of Music graduate. Lessons are taught in your own home across Beverly Hills, Hidden Hills, Calabasas, Brentwood, Bel Air, Pacific Palisades and Santa Monica, for children from age seven, teenagers and adults.',
+    'One-to-one piano, voice, guitar, music theory and songwriting lessons with Andrea Coutinho, a Berklee College of Music graduate. Lessons are taught in your own home across Beverly Hills, Hidden Hills, Calabasas, Brentwood, Bel Air, Pacific Palisades and Santa Monica, for children from age seven, teenagers and adults.',
 };
 
 export const ABOUT_META: RouteMeta = {
@@ -39,7 +39,7 @@ export const ABOUT_META: RouteMeta = {
   priority: 0.8,
   staticHeading: 'Meet Andrea',
   staticBody:
-    'Andrea Coutinho holds a Bachelor of Music in Composition from Berklee College of Music. She has been playing piano and singing for 20 years and has taught privately for the last 4, working with children and adults who want a thoughtful, structured approach to learning music.',
+    'Andrea Coutinho holds a Bachelor of Music in Composition from Berklee College of Music. She has been playing piano and singing for 20 years, and teaching privately for the last 4, working with children and adults who want some structure in how they learn music.',
 };
 
 export const CONTACT_META: RouteMeta = {
@@ -47,11 +47,11 @@ export const CONTACT_META: RouteMeta = {
   title:
     'Book Piano & Voice Lessons in Beverly Hills, Calabasas & West LA | Andrea Coutinho',
   description:
-    'Request a free consultation for premium in-home piano and voice lessons with Andrea Coutinho — serving Beverly Hills, Hidden Hills, Calabasas, Brentwood and surrounding LA neighborhoods.',
+    'Request a free consultation for in-home piano and voice lessons with Andrea Coutinho, serving Beverly Hills, Hidden Hills, Calabasas, Brentwood and surrounding LA neighborhoods.',
   priority: 0.8,
   staticHeading: 'Request a consultation call',
   staticBody:
-    'Share a bit about the student and Andrea will follow up with availability and next steps for in-home lessons. Email music@andreacoutinho.com or call +1 (770) 891-8775.',
+    'Tell Andrea a little about the student and she will come back with her availability and what happens next. Email music@andreacoutinho.com or call +1 (770) 891-8775.',
 };
 
 export const areaMeta = (slug: string): RouteMeta => {

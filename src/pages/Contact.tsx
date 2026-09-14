@@ -82,8 +82,8 @@ const Contact: React.FC = () => {
             <p className="eyebrow">Contact</p>
             <h1 className="section-title">Request a consultation call</h1>
             <p className="section-subtitle">
-              Share a bit about yourself, and Andrea will follow up
-              with availability and next steps for in-home lessons.
+              Tell Andrea a little about the student, and she will come back
+              with her availability and what happens next.
             </p>
           </header>
 
@@ -257,8 +257,8 @@ const Contact: React.FC = () => {
               </li>
             </ul>
             <p className="muted small-text">
-              In-home lessons are available in selected areas of Los Angeles; exact
-              availability can be discussed by email.
+              Andrea teaches in selected areas of Los Angeles. Email her for
+              current availability in yours.
             </p>
           </div>
 
@@ -266,7 +266,7 @@ const Contact: React.FC = () => {
             <h2 className="card-title">Lesson times</h2>
             <ul className="bullet-list">
               <li>All day throughout the working week</li>
-              <li>Request a call for detailed availability</li>
+              <li>Ask on a call for specific times</li>
             </ul>
           </div>
         </aside>
