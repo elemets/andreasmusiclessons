@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollManager from './components/ScrollManager';
 import ContactTracking from './components/ContactTracking';
+import MobileContactBar from './components/MobileContactBar';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -30,6 +31,7 @@ const App: React.FC = () => {
         </Routes>
       </main>
       <Footer />
+      <MobileContactBar />
     </div>
   );
 };

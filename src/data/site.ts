@@ -10,6 +10,8 @@ export const BUSINESS = {
   email: 'music@andreacoutinho.com',
   telephone: '+1-770-891-8775',
   telephoneDisplay: '+1 (770) 891-8775',
+  /** Shorter form, for buttons where the country code is just noise. */
+  telephoneShort: '(770) 891-8775',
   priceRange: '$$$',
 } as const;
 

@@ -287,6 +287,33 @@ section[id] {
   width: 100%;
 }
 
+/* Outlined against the hero photograph, to sit beside .btn-primary-second
+   without two filled buttons competing. */
+.btn-outline-paper {
+  background: transparent;
+  color: var(--paper);
+  border-color: rgba(241, 238, 231, 0.75);
+  padding: 1rem 2.2rem;
+}
+
+.btn-outline-paper:hover {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+
+/* A call or text button carries a glyph: it is read as an action before the
+   words are read, which is the whole point of putting it above the fold. */
+.btn-with-icon {
+  gap: 0.6rem;
+}
+
+.btn-icon {
+  width: 1.05em;
+  height: 1.05em;
+  flex: none;
+}
+
 /* ------------------------------
    Navbar
 -------------------------------- */
@@ -653,6 +680,19 @@ section[id] {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.landing-hero-alt {
+  margin-top: 1.1rem;
+  font-size: 0.92rem;
+  color: rgba(241, 238, 231, 0.78);
+}
+
+.landing-hero-alt a {
+  color: var(--paper);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
 }
 
 /* One quiet fade for the whole hero. No typewriter, no stagger. */
@@ -1325,6 +1365,40 @@ section[id] {
   padding: 0;
 }
 
+/* Call and text, under the form rather than in the sidebar — on a phone the
+   sidebar is below everything, which is the last place a caller looks. */
+.contact-direct {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.contact-direct-action {
+  flex: 1 1 14rem;
+}
+
+/* A ruled "or" divider, in the same hairline language as the sections. */
+.contact-or {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+}
+
+.contact-or::before,
+.contact-or::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
 .contact-form {
   margin-top: 2.5rem;
   display: flex;
@@ -1491,6 +1565,19 @@ section[id] {
   margin-top: 1.5rem;
 }
 
+.area-page-actions-alt {
+  margin-top: 1rem;
+  font-size: 0.92rem;
+  color: var(--ink-faint);
+}
+
+.area-page-actions-alt a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+}
+
 .area-page-aside {
   display: flex;
   flex-direction: column;
@@ -1654,6 +1741,76 @@ section[id] {
    Responsive
 -------------------------------- */
 
+/* ------------------------------
+   Mobile call / text bar
+
+   Pinned to the bottom of the viewport below 768px. It is the site's
+   loudest element on purpose: most visitors arrive on a phone, and a
+   phone's shortest path to a booking is the dialler, not a form.
+-------------------------------- */
+
+.mobile-contact-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-contact-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--ink);
+    border-top: 1px solid var(--ink);
+    /* Clears the iPhone home indicator, which otherwise sits on top of
+       the two tap targets. */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .mobile-contact-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    /* Comfortably past the 44px minimum tap target. */
+    min-height: 3.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--text);
+    font-size: 0.74rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+
+  .mobile-contact-action:hover,
+  .mobile-contact-action:active {
+    text-decoration: none;
+  }
+
+  /* The two halves are told apart by a hairline and an inversion, so a
+     thumb never has to read the label to know which is which. */
+  .mobile-contact-action-text {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .mobile-contact-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: none;
+  }
+
+  /* The bar floats over the page, so the footer needs room to clear it or
+     its last line is permanently hidden. */
+  .app {
+    padding-bottom: calc(3.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 @media (max-width: 1024px) {
   .section-header {
     grid-template-columns: 8rem minmax(0, 1fr);
@@ -1784,7 +1941,26 @@ section[id] {
   }
 
   .landing-hero-content {
-    padding-block: 3.5rem;
+    /* The hero is centred, so the extra bottom padding lifts the content
+       clear of the fixed call/text bar rather than padding beneath it. */
+    padding-top: 3.5rem;
+    padding-bottom: 7rem;
+  }
+
+  .landing-hero-subtitle {
+    margin-bottom: 1.75rem;
+  }
+
+  /* .btn sets white-space: nowrap, so two of them will not share a phone's
+     width — they stack, each one a full-width target. */
+  .landing-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .landing-hero-actions .btn {
+    width: 100%;
   }
 
   .form-grid {

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import andreaHero from '../assets/hero-other-2.jpg';
 import heroVideo from '../assets/herovideos/hero.mp4';
 import Seo from '../components/Seo';
+import { CallLink, TextLink } from '../components/ContactLinks';
+import { BUSINESS } from '../data/site';
 import {
   GuitarIcon,
   MicrophoneIcon,
@@ -153,11 +155,30 @@ const Home: React.FC = () => {
                 Andrea teaches at your house, so nobody has to drive to a studio.
               </p>
 
+              {/* Three ways out of the hero, in the order a phone visitor
+                  wants them: call, text, then the form for anyone who would
+                  rather write. The form alone was asking someone standing in
+                  a kitchen to type seven fields. */}
               <div className="landing-hero-actions hero-fade hero-fade-delay-3">
-                <Link to="/contact" className="btn btn-primary-second">
-                  Book a free consultation
-                </Link>
+                <CallLink
+                  place="hero"
+                  className="btn btn-primary-second btn-with-icon"
+                  iconClassName="btn-icon"
+                >
+                  Call {BUSINESS.telephoneShort}
+                </CallLink>
+                <TextLink
+                  place="hero"
+                  className="btn btn-outline-paper btn-with-icon"
+                  iconClassName="btn-icon"
+                >
+                  Text Andrea
+                </TextLink>
               </div>
+
+              <p className="landing-hero-alt hero-fade hero-fade-delay-3">
+                Or <Link to="/contact">book a free consultation</Link> online.
+              </p>
             </div>
           </div>
         </div>

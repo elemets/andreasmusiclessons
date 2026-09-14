@@ -10,6 +10,7 @@ import { AREAS, AREA_BY_SLUG } from '../data/areas';
 import { FAQS } from '../data/faqs';
 import { areaServiceSchema, breadcrumbSchema, faqSchema } from '../data/schema';
 import { BUSINESS } from '../data/site';
+import { CallLink, TextLink } from '../components/ContactLinks';
 
 const AreaPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -77,14 +78,30 @@ const AreaPage: React.FC = () => {
                 every week.
               </p>
 
+              {/* These pages take the ad traffic, most of it on a phone, so
+                  they lead with the dialler like the home page does. The form
+                  stays as the quieter second option underneath. */}
               <div className="area-page-actions">
-                <Link to="/contact" className="btn btn-primary">
-                  Check availability in {area.name}
-                </Link>
-                <a href={`mailto:${BUSINESS.email}`} className="btn btn-ghost">
-                  Email Andrea
-                </a>
+                <CallLink
+                  place="area_page"
+                  className="btn btn-primary btn-with-icon"
+                  iconClassName="btn-icon"
+                >
+                  Call {BUSINESS.telephoneShort}
+                </CallLink>
+                <TextLink
+                  place="area_page"
+                  className="btn btn-ghost btn-with-icon"
+                  iconClassName="btn-icon"
+                >
+                  Text Andrea
+                </TextLink>
               </div>
+
+              <p className="area-page-actions-alt">
+                Or <Link to="/contact">send a message</Link> about availability
+                in {area.name}.
+              </p>
             </div>
 
             <aside className="area-page-aside">

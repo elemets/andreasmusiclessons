@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { trackContactEvent } from '../lib/tracking';
+import { trackContactPageView } from '../lib/tracking';
 
 export default function ContactTracking() {
   const { pathname } = useLocation();
@@ -10,7 +10,7 @@ export default function ContactTracking() {
     const path = pathname.replace(/\/+$/, '').toLowerCase() || '/';
     if (previousPath.current === path) return;
     previousPath.current = path;
-    if (path === '/contact') trackContactEvent('contact_page_view');
+    if (path === '/contact') trackContactPageView();
   }, [pathname]);
 
   return null;
