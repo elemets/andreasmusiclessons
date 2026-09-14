@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import andreaHero from '../assets/hero-other-2.jpg';
+import heroVideo from '../assets/herovideos/hero.mp4';
 import Seo from '../components/Seo';
 import {
   GuitarIcon,
@@ -55,6 +56,20 @@ const Home: React.FC = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [carouselPaused, setCarouselPaused] = useState(false);
 
+  // Mounted on every screen size — the compressed file is small enough
+  // that phones can have it too. Still gated on reduced motion, and
+  // gated in JS rather than CSS because a CSS-hidden <video> is
+  // downloaded anyway. The poster stays the LCP element either way.
+  const [showHeroVideo, setShowHeroVideo] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia('(prefers-reduced-motion: no-preference)');
+    const sync = () => setShowHeroVideo(query.matches);
+    sync();
+    query.addEventListener('change', sync);
+    return () => query.removeEventListener('change', sync);
+  }, []);
+
   const testimonialCount = VISIBLE_TESTIMONIALS.length;
 
   const showPrev = () =>
@@ -70,33 +85,6 @@ const Home: React.FC = () => {
     );
     return () => window.clearInterval(interval);
   }, [carouselPaused, testimonialCount]);
-
-  useEffect(() => {
-    const targets = document.querySelectorAll<HTMLElement>('.reveal');
-    if (!targets.length) return;
-
-    // Without this, anyone who prefers reduced motion sees content that never
-    // animates in — and therefore stays invisible.
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      targets.forEach((target) => target.classList.add('reveal-visible'));
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('reveal-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: '0px 0px -10% 0px' },
-    );
-
-    targets.forEach((target) => observer.observe(target));
-    return () => observer.disconnect();
-  }, []);
 
   const current = VISIBLE_TESTIMONIALS[activeTestimonial];
 
@@ -118,6 +106,19 @@ const Home: React.FC = () => {
             fetchPriority="high"
             decoding="async"
           />
+          {showHeroVideo && (
+            <video
+              className="landing-hero-video"
+              poster={andreaHero}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+            >
+              <source src={heroVideo} type="video/mp4" />
+            </video>
+          )}
           <div className="landing-hero-gradient" />
         </div>
 
@@ -148,7 +149,7 @@ const Home: React.FC = () => {
 
               <div className="landing-hero-actions hero-fade hero-fade-delay-3">
                 <Link to="/contact" className="btn btn-primary-second">
-                  Book a private consultation
+                  Book a free consultation
                 </Link>
               </div>
             </div>

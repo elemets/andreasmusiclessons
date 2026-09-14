@@ -1,6 +1,19 @@
-/* ------------------------------
-   Reset / base
--------------------------------- */
+/* ==============================================================
+   Andrea Coutinho Music Coaching
+
+   Design notes, so this doesn't drift back:
+
+   - INK AND PAPER ONLY. There is no accent colour. The logo is a
+     charcoal disc with an ivory clef; the warmth on the page comes
+     from the photography, not from a decorative gold. If an accent
+     is ever wanted, it belongs in --ink-rule and nowhere else.
+   - Sections are separated by hairline rules on one continuous
+     paper ground, never by alternating background blocks.
+   - Section headers run on an asymmetric spine: label in a narrow
+     left rail, heading and text in the wide right column.
+   - Uppercase letterspacing is reserved for two things: the eyebrow
+     labels and buttons. Everywhere else it reads as costume.
+============================================================== */
 
 *,
 *::before,
@@ -14,43 +27,54 @@ body,
   height: 100%;
 }
 
+:root {
+  /* Paper: a cool, grey-leaning stock rather than a sunny cream. */
+  --paper: #f1eee7;
+  --paper-raised: #f8f6f2;
+  --paper-deep: #e6e2d8;
+
+  /* Ink */
+  --ink: #14120f;
+  --ink-soft: #4c463d;
+  --ink-faint: #7d7669;
+
+  --rule: rgba(20, 18, 15, 0.16);
+  --rule-strong: rgba(20, 18, 15, 0.42);
+
+  /* Type */
+  --display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --text: 'Karla', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --measure: 34rem;
+  --rail: 10.5rem;
+  --gutter: 2rem;
+}
+
 body {
   margin: 0;
-  font-family: 'Lato', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg);
-  color: var(--text-main);
+  background: var(--paper);
+  color: var(--ink-soft);
+  font-family: var(--text);
+  font-size: 1.0625rem;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  line-height: 1.6;
+  text-rendering: optimizeLegibility;
 }
 
-/* Color tokens — warm ivory + charcoal with a muted brass accent */
-:root {
-  --bg: #faf8f4; /* soft warm off-white */
-  --surface: #fffdf9; /* cards / sections */
-  --surface-soft: #f4efe6; /* subtle warm tint for alternating sections */
-  --primary: #1a1714; /* deep charcoal, like the business card wordmark */
-  --accent: #2a2420; /* editorial charcoal */
-  --accent-strong: #000000;
-  --gold: #9c7c35; /* muted brass — used sparingly for accents */
-  --gold-soft: #c9b282;
-  --text-main: #2e2a26;
-  --text-muted: #57504a;
-  --border-subtle: #e5ddcf;
-  --shadow-soft: 0 18px 40px -28px rgba(26, 23, 20, 0.35);
-  --radius-lg: 6px;
-  --radius-md: 4px;
-  --radius-full: 999px;
-}
-
-/* Typography */
 h1,
 h2,
 h3,
 h4 {
-  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  font-weight: 600;
   margin: 0;
-  color: var(--primary);
+  font-family: var(--display);
+  /* Pinned rather than `auto`: with auto, a 5rem heading asks for the
+     largest optical cut in the family, which is the most delicate one. */
+  font-optical-sizing: none;
+  font-variation-settings: 'opsz' 24;
+  font-weight: 600;
+  color: var(--ink);
+  text-wrap: balance;
+  letter-spacing: -0.012em;
 }
 
 p {
@@ -64,14 +88,28 @@ a {
 
 a:hover {
   text-decoration: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
 }
 
-/* Layout */
+img {
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ------------------------------
+   Layout
+-------------------------------- */
+
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--bg);
+  background: var(--paper);
 }
 
 .main-content {
@@ -79,18 +117,100 @@ a:hover {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 var(--gutter);
 }
 
-/* Utility */
+/* Rules, not background blocks, carry the section rhythm. */
+.section {
+  padding-block: 5.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+/* The two long-form sections get more air than the short ones. */
+.services-section {
+  padding-block: 6.5rem;
+}
+
+.process-section,
+.faq-section {
+  padding-block: 4.5rem;
+}
+
+.main-content > .section:first-child,
+.main-content > *:first-child > .section:first-child {
+  border-top: none;
+}
+
+.section-narrow {
+  padding-block: 3.5rem 4.5rem;
+  border-top: none;
+}
+
+.section-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+
+/* Anchor targets sit below the sticky navbar. */
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
 .muted {
-  color: var(--text-muted);
+  color: var(--ink-faint);
 }
 
 .small-text {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+}
+
+/* ------------------------------
+   The editorial spine
+
+   Every section header is a two-column grid: eyebrow in the rail,
+   title and subtitle in the text column. No markup change needed,
+   and it breaks the centred eyebrow/title/subtitle stack that made
+   every section look like the one above it.
+-------------------------------- */
+
+.section-header {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  column-gap: 3.5rem;
+  align-items: start;
+  margin-bottom: 3rem;
+  max-width: none;
+  text-align: left;
+}
+
+.eyebrow {
+  grid-column: 1;
+  margin: 0;
+  padding-top: 0.75rem;
+  font-family: var(--text);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  line-height: 1.4;
+}
+
+.section-title {
+  grid-column: 2;
+  font-size: clamp(2.15rem, 1.2rem + 2.6vw, 3.3rem);
+  line-height: 1.05;
+  margin: 0;
+}
+
+.section-subtitle {
+  grid-column: 2;
+  margin-top: 1rem;
+  max-width: var(--measure);
+  color: var(--ink-soft);
 }
 
 /* ------------------------------
@@ -101,74 +221,66 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 2px;
-  padding: 0.8rem 1.7rem;
-  border: 1px solid transparent;
-  font-size: 0.8rem;
+  border-radius: 0;
+  padding: 0.9rem 1.9rem;
+  border: 1px solid var(--ink);
+  font-family: var(--text);
+  font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   cursor: pointer;
   text-decoration: none;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.08s ease;
   white-space: nowrap;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.btn:hover {
+  text-decoration: none;
 }
 
 .btn-primary {
-  background: var(--primary);
-  color: #ffffff;
-  border-color: var(--primary);
+  background: var(--ink);
+  color: var(--paper);
 }
 
-.btn-primary-second {
-  background: var(--primary);
-  color: #ffffff;
-  border-color: var(--primary);
-  padding: 0.95rem 2.1rem;
-}
-
-/* Standard solid buttons (navbar, forms) invert to black-and-white on hover —
-   they sit on light surfaces where white text would disappear. */
 .btn-primary:hover {
-  background: #ffffff;
-  color: var(--primary);
-  border-color: var(--primary);
-  transform: translateY(-1px);
-  text-decoration: none;
-}
-
-/* Hero CTA keeps the transparent / white hover over the hero image */
-.btn-primary-second:hover {
   background: transparent;
-  color: #ffffff;
-  border-color: #ffffff;
-  transform: translateY(-1px);
-  text-decoration: none;
+  color: var(--ink);
 }
 
 .btn-ghost {
   background: transparent;
-  color: var(--primary);
-  border-color: var(--primary);
+  color: var(--ink);
+  border-color: var(--rule-strong);
 }
 
 .btn-ghost:hover {
-  border-color: var(--gold);
-  color: var(--gold);
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
 }
 
-.btn-ghost:hover {
+/* Hero CTA sits on the photograph, so it inverts against paper. */
+.btn-primary-second {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+  padding: 1rem 2.2rem;
+}
+
+.btn-primary-second:hover {
   background: transparent;
-  text-decoration: none;
+  color: var(--paper);
+  border-color: var(--paper);
 }
 
 .btn-small {
-  padding: 0.55rem 1.2rem;
-  font-size: 0.72rem;
+  padding: 0.6rem 1.3rem;
+  font-size: 0.66rem;
 }
 
 .btn-fullwidth {
@@ -183,32 +295,87 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(250, 248, 244, 0.88);
-  border-bottom: 1px solid var(--border-subtle);
-  backdrop-filter: blur(10px);
+  background: rgba(241, 238, 231, 0.92);
+  border-bottom: 1px solid var(--rule);
+  backdrop-filter: blur(8px);
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Over the hero video. Everything inverts to paper, and a soft scrim
+   guarantees the wordmark and links stay readable whatever frame of
+   the video happens to be behind them. */
+.navbar-transparent {
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+}
+
+.navbar-transparent::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(rgba(14, 12, 10, 0.62), rgba(14, 12, 10, 0));
+}
+
+.navbar-transparent .brand-title,
+.navbar-transparent .nav-link-active {
+  color: var(--paper);
+}
+
+.navbar-transparent .brand-subtitle,
+.navbar-transparent .nav-link {
+  color: rgba(241, 238, 231, 0.82);
+}
+
+.navbar-transparent .nav-link:hover {
+  color: var(--paper);
+}
+
+.navbar-transparent .nav-link::after {
+  background: var(--paper);
+}
+
+.navbar-transparent .btn-primary {
+  background: transparent;
+  color: var(--paper);
+  border-color: rgba(241, 238, 231, 0.55);
+}
+
+.navbar-transparent .btn-primary:hover {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+
+.navbar-transparent .burger,
+.navbar-transparent .burger::before,
+.navbar-transparent .burger::after {
+  background: var(--paper);
+}
+
+.navbar-transparent .burger-open {
+  background: transparent;
 }
 
 .navbar .container {
-  /* 70% on wide monitors, but never narrower than the standard content column
-     and never wider than the viewport — at laptop widths the flat 70% squeezed
-     the nav badly enough that the brand text collided with the links. */
-  max-width: min(100%, max(70%, 1100px));
-  padding-left: 0.75rem;
+  max-width: 1180px;
 }
 
 .navbar-inner {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   min-height: 4.5rem;
+  gap: 1rem;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  text-decoration: none;
-  margin-left: -0.6rem;
+  gap: 0.8rem;
   min-width: 0;
   flex: 0 1 auto;
 }
@@ -218,8 +385,8 @@ a:hover {
 }
 
 .brand-logo {
-  width: 3.1rem;
-  height: 3.1rem;
+  width: 3.5rem;
+  height: 3.5rem;
   display: block;
   object-fit: contain;
   flex-shrink: 0;
@@ -228,25 +395,23 @@ a:hover {
 .brand-text {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
   min-width: 0;
 }
 
 .brand-title {
-  font-weight: 600;
-  font-size: 0.87rem;
-  color: var(--primary);
-  max-width: 100%;
+  font-family: var(--display);
+  font-size: 1.12rem;
+  font-weight: 500;
+  color: var(--ink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.25;
 }
 
 .brand-subtitle {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  max-width: 100%;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -255,57 +420,49 @@ a:hover {
 .nav-desktop {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 2rem;
   margin-left: auto;
   flex-shrink: 0;
-  padding-left: 1rem;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
 .nav-link {
   position: relative;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--text-muted);
-  text-decoration: none;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  padding-bottom: 0.15rem;
 }
 
 .nav-link::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -0.4rem;
+  bottom: 0;
   width: 0;
   height: 1px;
-  background: var(--gold);
-  transition: width 0.18s ease;
+  background: var(--ink);
+  transition: width 0.2s ease;
 }
 
 .nav-link:hover {
-  color: var(--primary);
+  color: var(--ink);
   text-decoration: none;
 }
 
-.nav-link:hover::after {
-  width: 100%;
-}
-
-.nav-link-active {
-  color: var(--primary);
-  font-weight: 500;
-}
-
+.nav-link:hover::after,
 .nav-link-active::after {
   width: 100%;
 }
 
-/* Mobile nav toggle */
+.nav-link-active {
+  color: var(--ink);
+}
+
 .mobile-toggle {
   display: none;
   background: transparent;
@@ -320,9 +477,8 @@ a:hover {
 .burger::after {
   display: block;
   width: 22px;
-  height: 2px;
-  border-radius: 999px;
-  background: var(--primary);
+  height: 1px;
+  background: var(--ink);
   transition:
     transform 0.18s ease,
     opacity 0.18s ease,
@@ -357,1160 +513,50 @@ a:hover {
   transform: translateY(-6px) rotate(-45deg);
 }
 
-/* Mobile menu */
 .mobile-menu {
   display: none;
-  border-top: 1px solid var(--border-subtle);
-  padding: 0.75rem 1.5rem 1.25rem;
-  background: var(--bg);
+  border-top: 1px solid var(--rule);
+  padding: 0.75rem var(--gutter) 1.5rem;
+  background: var(--paper);
 }
 
 .mobile-nav-link {
   display: block;
-  padding: 0.5rem 0;
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  text-decoration: none;
+  padding: 0.6rem 0;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--rule);
 }
 
-.mobile-nav-link-active {
-  color: var(--primary);
-  font-weight: 500;
-}
-
+.mobile-nav-link-active,
 .mobile-nav-link:hover {
-  color: var(--primary);
+  color: var(--ink);
+}
+
+.mobile-menu .btn {
+  margin-top: 1.25rem;
 }
 
 /* ------------------------------
-   Hero
+   Landing hero
+
+   The photograph is the thesis: a grand piano shot from above on
+   dark boards. It used to sit under a 55% ivory wash that flattened
+   it. Now it keeps its own contrast and the type sits in a scrim
+   weighted to the left, which is also where a video will want it.
 -------------------------------- */
 
-.hero {
-  padding: 3.5rem 0 3rem;
-  background: var(--surface-soft);
-}
-
-.hero-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
-  gap: 2.5rem;
-  align-items: center;
-}
-
-.hero-text {
-  max-width: 640px;
-}
-
-.eyebrow {
-  font-size: 0.74rem;
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
-  color: var(--gold);
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-.hero-title {
-  font-size: clamp(2.2rem, 3vw + 1rem, 3rem);
-  line-height: 1.05;
-  margin-bottom: 0.75rem;
-}
-
-.hero-title-highlight {
-  font-style: italic;
-  color: var(--primary);
-}
-
-.hero-subtitle {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--text-muted);
-  margin-bottom: 1.7rem;
-}
-
-.hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-  margin-bottom: 1.8rem;
-}
-
-.hero-meta {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  max-width: 640px;
-}
-
-.hero-meta-item p {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-/* Pill tag */
-.pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 500;
-  background: var(--surface-soft);
-  color: var(--primary);
-  border: 1px solid var(--border-subtle);
-}
-
-/* Hero media / photo */
-
-.hero-media {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.hero-photo-frame {
-  position: relative;
-  border-radius: 1.25rem;
-  padding: 1px;
-  background: var(--border-subtle);
-}
-
-.hero-photo-inner {
-  border-radius: 1.2rem;
-  overflow: hidden;
-  background: var(--surface);
-}
-
-.hero-photo {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(1.02) contrast(1.02);
-}
-
-.hero-photo-badge {
-  position: absolute;
-  left: 1rem;
-  bottom: 1rem;
-  display: flex;
-  gap: 0.75rem;
-  padding: 0.5rem 0.8rem;
-  border-radius: 999px;
-  backdrop-filter: blur(14px);
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid var(--border-subtle);
-}
-
-.badge-label {
-  display: block;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-}
-
-.badge-value {
-  display: block;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--primary);
-}
-
-.hero-stats {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.75rem;
-  margin-top: 0.4rem;
-}
-
-.hero-stat {
-  padding: 0.7rem 0.9rem;
-  border-radius: 0.9rem;
-  background: var(--surface);
-  border: 1px solid var(--border-subtle);
-}
-
-.hero-stat-label {
-  display: block;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  margin-bottom: 0.2rem;
-}
-
-.hero-stat-value {
-  font-size: 0.9rem;
-  color: var(--primary);
-}
-
-/* ------------------------------
-   Sections / Features
--------------------------------- */
-
-.section {
-  padding: 5.5rem 0;
-  background: var(--surface);
-}
-
-.section-narrow {
-  padding-top: 2.5rem;
-  padding-bottom: 3rem;
-}
-
-.section-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 2.2rem;
-}
-
-.section-header {
-  text-align: left;
-  max-width: 640px;
-  margin-bottom: 1.5rem;
-}
-
-.section-title {
-  font-size: clamp(2.1rem, 1.8vw + 1rem, 2.7rem);
-  line-height: 1.15;
-  margin-bottom: 0.6rem;
-}
-
-.section-subtitle {
-  font-size: 0.98rem;
-  color: var(--text-muted);
-  max-width: 34rem;
-}
-
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.4rem;
-}
-
-.feature-card {
-  background: var(--surface);
-  border-radius: var(--radius-lg);
-  padding: 1.4rem 1.3rem 1.5rem;
-  border: 1px solid var(--border-subtle);
-}
-
-.feature-icon {
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: 0.9rem;
-  display: grid;
-  place-items: center;
-  background: var(--surface-soft);
-  border: 1px solid var(--border-subtle);
-  color: var(--primary);
-  margin-bottom: 0.7rem;
-  font-size: 1.3rem;
-}
-
-.feature-title {
-  font-size: 1rem;
-  margin-bottom: 0.4rem;
-}
-
-.feature-body {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-}
-
-/* ------------------------------
-   Services
--------------------------------- */
-
-.services-section .section-header {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.services-section .section-subtitle {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.services-section {
-  background: #f8f8f8;
-}
-
-/* Anchor targets for in-page links (/#faq, /#testimonials …). The navbar is
-   sticky and 4.5rem tall, so without this the section heading lands underneath
-   it and the visitor appears to arrive mid-section. */
-section[id] {
-  scroll-margin-top: 5.5rem;
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.9s ease,
-    transform 0.9s ease;
-}
-
-.reveal-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal-stagger .reveal {
-  transition-delay: 120ms;
-}
-
-.reveal-stagger .reveal:nth-child(2) {
-  transition-delay: 220ms;
-}
-
-.reveal-stagger .reveal:nth-child(3) {
-  transition-delay: 320ms;
-}
-
-.reveal-stagger .reveal:nth-child(4) {
-  transition-delay: 420ms;
-}
-
-.reveal-stagger .reveal:nth-child(5) {
-  transition-delay: 520ms;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1.5rem;
-  text-align: center;
-  margin-top: 0.9rem;
-}
-
-.service-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.35rem;
-}
-
-/* Line icons replaced the grayscale photographs. The frame is a thin brass
-   ring that fills on hover — restrained, and consistent across the set. */
-.service-icon-frame {
-  width: 6.5rem;
-  height: 6.5rem;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-full);
-  color: var(--gold);
-  background: var(--surface);
-  transition:
-    border-color 0.35s ease,
-    background 0.35s ease,
-    transform 0.35s ease;
-}
-
-.service-icon-svg {
-  width: 3.1rem;
-  height: 3.1rem;
-  display: block;
-}
-
-.service-item:hover .service-icon-frame {
-  border-color: var(--gold-soft);
-  background: var(--surface-soft);
-  transform: translateY(-4px);
-}
-
-.service-blurb {
-  font-size: 0.9rem;
-  line-height: 1.65;
-  color: var(--text-muted);
-  max-width: 15rem;
-  margin: -0.55rem auto 0;
-}
-
-.service-title {
-  font-size: 1.35rem;
-  margin-bottom: 0.5rem;
-}
-
-.services-note {
-  margin-top: 2rem;
-  text-align: center;
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  font-style: italic;
-}
-
-/* ------------------------------
-   Testimonials
--------------------------------- */
-
-.testimonials-section .section-header {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.testimonials-section .section-subtitle {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.testimonial-carousel {
-  position: relative;
-  max-width: 46rem;
-  margin: 0 auto;
-  padding: 0 3.5rem;
-  text-align: center;
-}
-
-.testimonial-slide {
-  margin: 0;
-  min-height: 15rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1.4rem;
-  animation: testimonial-fade 0.7s ease both;
-}
-
-@keyframes testimonial-fade {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.testimonial-quote::before {
-  content: '\201C';
-  display: block;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 3.4rem;
-  line-height: 0.5;
-  color: var(--gold);
-  margin-bottom: 1rem;
-}
-
-.testimonial-quote {
-  margin: 0;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.45rem;
-  font-weight: 500;
-  font-style: italic;
-  line-height: 1.55;
-  color: var(--text-main);
-}
-
-.testimonial-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.testimonial-name {
-  font-weight: 600;
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--gold);
-}
-
-.testimonial-role {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-}
-
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 2.6rem;
-  height: 2.6rem;
-  display: grid;
-  place-items: center;
-  padding: 0;
-  background: transparent;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-full);
-  font-size: 1.4rem;
-  line-height: 1;
-  color: var(--primary);
-  cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease;
-}
-
-.carousel-arrow:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-}
-
-.carousel-arrow-prev {
-  left: 0;
-}
-
-.carousel-arrow-next {
-  right: 0;
-}
-
-.testimonial-dots {
-  display: flex;
-  justify-content: center;
-  gap: 0.55rem;
-  margin-top: 1.8rem;
-}
-
-.testimonial-dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  padding: 0;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--gold);
-  background: transparent;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.testimonial-dot:hover {
-  background: var(--gold-soft);
-}
-
-.testimonial-dot.is-active {
-  background: var(--gold);
-  transform: scale(1.15);
-}
-
-/* ------------------------------
-   Areas served
--------------------------------- */
-
-.areas-section {
-  background: var(--bg);
-}
-
-.areas-section .section-header,
-.areas-section .section-subtitle {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.areas-list {
-  list-style: none;
-  margin: 0 auto;
-  padding: 0;
-  max-width: 52rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  column-gap: 0;
-  row-gap: 0.9rem;
-}
-
-.areas-list-item {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.35rem;
-  font-weight: 500;
-  color: var(--primary);
-  white-space: nowrap;
-}
-
-.areas-list-item:not(:last-child)::after {
-  content: '\00B7';
-  margin: 0 1.1rem;
-  color: var(--gold);
-}
-
-.areas-cta {
-  margin-top: 2.6rem;
-  text-align: center;
-}
-
-/* ------------------------------
-   About page layout
--------------------------------- */
-
-.about-portrait {
-  position: relative;
-  margin: 0;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--border-subtle);
-  background: var(--surface-soft);
-  box-shadow: var(--shadow-soft);
-  aspect-ratio: 4 / 5;
-  touch-action: pan-y; /* allow vertical scroll, intercept horizontal swipes */
-  user-select: none;
-}
-
-.about-portrait-track {
-  position: absolute;
-  inset: 0;
-}
-
-.about-portrait-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: saturate(0.85) contrast(0.98);
-  opacity: 0;
-  transition: opacity 0.9s ease;
-}
-
-.about-portrait-image.is-active {
-  opacity: 1;
-}
-
-.about-portrait-dots {
-  position: absolute;
-  bottom: 0.85rem;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 0.45rem;
-  z-index: 1;
-}
-
-.about-portrait-dot {
-  width: 0.45rem;
-  height: 0.45rem;
-  padding: 0;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  background: rgba(255, 255, 255, 0.35);
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.about-portrait-dot:hover {
-  background: rgba(255, 255, 255, 0.7);
-}
-
-.about-portrait-dot.is-active {
-  background: #ffffff;
-  transform: scale(1.15);
-}
-
-.about-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
-  grid-template-areas:
-    "main carousel"
-    "main cards";
-  grid-template-rows: auto 1fr;
-  column-gap: 2rem;
-  row-gap: 1rem;
-  align-items: start;
-  margin-top: 0;
-}
-
-.about-main-column {
-  grid-area: main;
-  display: flex;
-  flex-direction: column;
-}
-
-.about-side-carousel {
-  grid-area: carousel;
-  margin: 0;
-}
-
-.about-side-cards {
-  grid-area: cards;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin: 0;
-}
-
-.about-main-column .section-header {
-  margin-bottom: 1.5rem;
-}
-
-.about-main {
-  font-size: 0.98rem;
-  line-height: 1.8;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.about-subtitle {
-  margin-top: 1.4rem;
-  margin-bottom: 0.4rem;
-  font-size: 1.45rem;
-}
-
-.checklist {
-  list-style: none;
-  padding-left: 0;
-  margin: 0.3rem 0 0.8rem;
-}
-
-.checklist li {
-  position: relative;
-  padding-left: 1.4rem;
-  margin-bottom: 0.35rem;
-}
-
-.checklist li::before {
-  content: '\2014';
-  position: absolute;
-  left: 0;
-  top: 0.05rem;
-  font-size: 0.85rem;
-  color: var(--gold);
-}
-
-/* Legacy alias retained in case it's still referenced elsewhere */
-.about-side {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.card {
-  background: var(--surface);
-  border-radius: var(--radius-md);
-  padding: 1.5rem 1.5rem 1.6rem;
-  border: 1px solid var(--border-subtle);
-  border-top: 2px solid var(--gold);
-  box-shadow: var(--shadow-soft);
-}
-
-.card-title {
-  font-size: 1.35rem;
-  margin-bottom: 0.8rem;
-}
-
-.definition-list {
-  margin: 0;
-}
-
-.definition-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  font-size: 0.9rem;
-  padding: 0.45rem 0;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.definition-row:last-child {
-  border-bottom: none;
-}
-
-.definition-row dt {
-  font-weight: 500;
-  color: var(--primary);
-}
-
-.definition-row dd {
-  margin: 0;
-  color: var(--text-muted);
-  text-align: right;
-}
-
-.bullet-list {
-  list-style: disc;
-  padding-left: 1.1rem;
-  margin: 0;
-}
-
-.bullet-list li {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  margin-bottom: 0.3rem;
-}
-
-.bullet-list li::marker {
-  color: var(--gold);
-}
-
-/* ------------------------------
-   Contact page
--------------------------------- */
-
-.contact-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.2fr);
-  gap: 2rem;
-}
-
-.contact-card {
-  background: var(--surface);
-  border-radius: var(--radius-lg);
-  padding: 2.3rem 2.2rem 2.4rem;
-  border: 1px solid var(--border-subtle);
-  border-top: 2px solid var(--gold);
-  box-shadow: var(--shadow-soft);
-}
-
-.contact-form {
-  margin-top: 1.3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 1rem;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  font-size: 0.9rem;
-}
-
-.field label {
-  font-weight: 600;
-  font-size: 0.74rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--primary);
-}
-
-.field input,
-.field textarea,
-.field select {
-  border-radius: 2px;
-  border: 1px solid var(--border-subtle);
-  padding: 0.75rem 0.9rem;
-  font: inherit;
-  background: #ffffff;
-  color: var(--text-main);
-  transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease,
-    background 0.15s ease;
-}
-
-.field textarea {
-  resize: vertical;
-}
-
-.field input::placeholder,
-.field textarea::placeholder {
-  color: var(--text-muted);
-}
-
-.field select {
-  color: var(--text-main);
-  background-image: none;
-}
-
-.field input:focus,
-.field textarea:focus,
-.field select:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 1px var(--primary);
-  background: #ffffff;
-}
-
-.form-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 0.4rem;
-  flex-wrap: wrap;
-}
-
-.status-message {
-  margin-top: 0.4rem;
-  font-size: 0.9rem;
-}
-
-.status-success {
-  color: #7fb57a;
-}
-
-.status-error {
-  color: #d96a6a;
-}
-
-.contact-details {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.detail-label {
-  display: block;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--gold);
-  font-weight: 600;
-}
-
-.detail-link,
-.detail-value {
-  font-size: 0.95rem;
-}
-
-/* ------------------------------
-   Footer
--------------------------------- */
-
-.footer {
-  border-top: 1px solid var(--border-subtle);
-  background: var(--bg);
-  padding: 1.25rem 0;
-}
-
-.footer-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem;
-  font-size: 0.88rem;
-}
-
-.footer-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.footer-brand {
-  color: var(--primary);
-}
-
-.footer-note {
-  color: var(--text-muted);
-}
-
-.footer-area {
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  margin-top: 0.15rem;
-}
-
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.footer-link {
-  color: var(--primary);
-  text-decoration: none;
-}
-
-.footer-link:hover {
-  text-decoration: underline;
-}
-
-/* ------------------------------
-   Responsive
--------------------------------- */
-
-@media (max-width: 960px) {
-  .hero-inner {
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
-  }
-
-  .feature-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .services-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  /* An odd number of cards leaves the last one orphaned in a 2-up grid;
-     span it so it centres instead of hanging off the left column. */
-  .services-grid .service-item:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-  }
-
-  .about-layout {
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
-  }
-
-  .contact-layout {
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-desktop {
-    display: none;
-  }
-
-  .mobile-toggle {
-    display: inline-flex;
-    flex-shrink: 0;
-  }
-
-  .mobile-menu {
-    display: block;
-  }
-
-  /* Navbar: reclaim full width and let brand text truncate so it can't push the hamburger */
-  .navbar .container {
-    max-width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .brand {
-    flex: 1 1 auto;
-    margin-left: 0;
-    gap: 0.6rem;
-  }
-
-  .brand-logo {
-    width: 2.4rem;
-    height: 2.4rem;
-  }
-
-  .brand-text {
-    flex: 1 1 auto;
-  }
-
-  .brand-title {
-    font-size: 0.82rem;
-  }
-
-  .brand-subtitle {
-    display: none;
-  }
-
-  /* Hero photo on mobile — shift focus to the pianist (left side of the image) */
-  .landing-hero-image {
-    object-position: 18% center;
-  }
-
-  .hero {
-    padding-top: 2.4rem;
-  }
-
-  .hero-inner {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .hero-media {
-    order: -1; /* show Andrea's photo first on mobile */
-  }
-
-  .hero-meta {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .feature-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .services-grid {
-    /* Two compact columns read better than one tall stack now that the
-       icons are line art rather than large photographs. */
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2.2rem 1.25rem;
-  }
-
-  /* Testimonial carousel: tighter gutters and smaller arrows on small screens */
-  .testimonial-carousel {
-    padding: 0 2.4rem;
-  }
-
-  .testimonial-slide {
-    min-height: 18rem;
-  }
-
-  .testimonial-quote {
-    font-size: 1.25rem;
-  }
-
-  .carousel-arrow {
-    width: 2.1rem;
-    height: 2.1rem;
-    font-size: 1.2rem;
-  }
-
-  .areas-list-item {
-    font-size: 1.15rem;
-  }
-
-  .areas-list-item:not(:last-child)::after {
-    margin: 0 0.7rem;
-  }
-
-  .contact-layout {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  /* About page: stack as carousel → main text → cards on mobile */
-  .about-layout {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      "carousel"
-      "main"
-      "cards";
-    grid-template-rows: auto auto auto;
-    row-gap: 1.5rem;
-  }
-
-  .contact-card {
-    order: -1;
-  }
-
-  .form-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 1.1rem;
-  }
-
-  .hero-title {
-    font-size: 1.9rem;
-  }
-
-  .section {
-    padding: 2.4rem 0;
-  }
-}
-
-/* ==============================
-   Full-screen landing hero
-============================== */
-
+/* The hero is pulled up under the navbar so the video runs behind it.
+   The navbar stays sticky, so it keeps working on scroll. */
 .landing-hero {
   position: relative;
-  min-height: calc(100vh - 4.5rem); /* full screen minus navbar height */
+  margin-top: -4.5rem;
+  min-height: 100svh;
   display: flex;
   align-items: stretch;
-  color: var(--primary);
   overflow: hidden;
+  background: var(--ink);
 }
-
-/* Background image */
 
 .landing-hero-background {
   position: absolute;
@@ -1518,75 +564,86 @@ section[id] {
   overflow: hidden;
 }
 
-.landing-hero-image {
+.landing-hero-image,
+.landing-hero-video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: none;
-  filter: saturate(0.7) brightness(1.08) contrast(0.95);
+  filter: none;
+}
+
+/* The still sits underneath as the poster and the fallback: if the
+   video is blocked, still loading, or the visitor is on a phone, this
+   is what shows. */
+.landing-hero-video {
+  z-index: 1;
 }
 
 .landing-hero-gradient {
   position: absolute;
   inset: 0;
-  /* Layer 1 (top): vignette — subtle darkening toward edges/corners */
-  /* Layer 2 (bottom): flat warm wash to soften the image overall */
-  background:
-    radial-gradient(ellipse at center, rgba(28, 25, 23, 0) 40%, rgba(28, 25, 23, 0.18) 75%, rgba(28, 25, 23, 0.4) 100%),
-    linear-gradient(rgba(250, 248, 244, 0.55), rgba(250, 248, 244, 0.55));
+  z-index: 2;
+  background: linear-gradient(
+    100deg,
+    rgba(14, 12, 10, 0.88) 0%,
+    rgba(14, 12, 10, 0.72) 34%,
+    rgba(14, 12, 10, 0.28) 62%,
+    rgba(14, 12, 10, 0.44) 100%
+  );
 }
-
-/* Foreground overlay */
 
 .landing-hero-overlay {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   width: 100%;
   display: flex;
   align-items: center;
+  /* Balances the navbar now overlapping the top of the hero. */
+  padding-top: 4.5rem;
 }
 
 .landing-hero-content {
-  max-width: 700px;
-  padding: 3.5rem 0 3rem;
+  max-width: 46rem;
+  padding-block: 5rem;
 }
 
-/* Text + animation */
-
 .landing-hero-kicker {
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.28em;
-  color: var(--primary);
-  margin-bottom: 1.2rem;
+  letter-spacing: 0.22em;
   font-weight: 600;
+  color: rgba(241, 238, 231, 0.72);
+  margin-bottom: 1.75rem;
 }
 
 .landing-hero-heading {
-  font-size: clamp(3rem, 4vw + 1rem, 4.8rem);
-  line-height: 1.08;
+  font-size: clamp(2.7rem, 1.4rem + 5vw, 5.2rem);
+  line-height: 1;
   font-weight: 600;
-  letter-spacing: -0.005em;
-  margin: 0 0 1.2rem;
-  color: var(--primary);
+  margin: 0 0 1.75rem;
+  color: var(--paper);
+  letter-spacing: -0.02em;
 }
 
 .landing-hero-heading em {
   display: block;
   font-style: italic;
   font-weight: 500;
-  font-size: 0.55em;
-  line-height: 1.3;
-  margin-top: 0.3rem;
-  color: var(--accent);
+  font-size: 0.46em;
+  line-height: 1.2;
+  margin-top: 0.5rem;
+  color: rgba(241, 238, 231, 0.82);
+  letter-spacing: -0.005em;
 }
 
 .landing-hero-subtitle {
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.7;
-  color: var(--text-main);
-  max-width: 32rem;
-  margin-bottom: 2rem;
+  color: rgba(241, 238, 231, 0.86);
+  max-width: 31rem;
+  margin-bottom: 2.5rem;
 }
 
 .landing-hero-actions {
@@ -1595,156 +652,48 @@ section[id] {
   gap: 1rem;
 }
 
-/* Hero entrance — heading types out, the rest fades in after it */
-
-.hero-fade {
-  opacity: 0;
-  animation: hero-fade-up 1s ease forwards;
+/* One quiet fade for the whole hero. No typewriter, no stagger. */
+.hero-fade,
+.hero-typed {
+  animation: hero-fade 0.8s ease both;
 }
 
-/* Staggered fades run alongside the typewriter so the space below the
-   heading fills quickly instead of sitting empty while it types */
 .hero-fade-delay-1 {
-  animation-delay: 0.35s;
+  animation-delay: 0.08s;
 }
 
 .hero-fade-delay-2 {
-  animation-delay: 0.7s;
+  animation-delay: 0.16s;
 }
 
 .hero-fade-delay-3 {
-  animation-delay: 1.05s;
+  animation-delay: 0.24s;
 }
 
-@keyframes hero-fade-up {
+.hero-typed {
+  display: inline-block;
+}
+
+@keyframes hero-fade {
   from {
     opacity: 0;
-    transform: translateY(16px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
-}
-
-/* Heading reveal.
-   The text is fully present in the markup and is uncovered left-to-right with
-   a stepped clip, which keeps the typewriter character of the original while
-   letting the h1 render complete for anything that reads the page before the
-   animation runs. steps() gives the staccato feel; a smooth wipe reads as a
-   slide instead. */
-.hero-typed {
-  display: inline-block;
-  animation: hero-type-reveal 0.9s steps(22, end) both;
-}
-
-@keyframes hero-type-reveal {
-  from {
-    clip-path: inset(0 100% 0 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-/* Mobile tweaks */
-
-@media (max-width: 768px) {
-  .landing-hero {
-    min-height: calc(100vh - 4rem);
-  }
-
-  /* Center the whole hero stack on mobile */
-  .landing-hero-content {
-    padding: 2.5rem 0 2.8rem;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  .landing-hero-heading {
-    font-size: 2.8rem;
-  }
-
-  .landing-hero-subtitle {
-    font-size: 0.9rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .landing-hero-actions {
-    justify-content: center;
-  }
-
-  /* Mobile: skip the expensive image filter and approximate the pale look
-     with a heavier (cheap) gradient wash instead */
-  .landing-hero-image {
-    filter: none;
-  }
-
-  .landing-hero-gradient {
-    background:
-      radial-gradient(ellipse at center, rgba(28, 25, 23, 0) 45%, rgba(28, 25, 23, 0.14) 100%),
-      linear-gradient(rgba(250, 248, 244, 0.88), rgba(250, 248, 244, 0.88));
-  }
-
-  /* Backdrop blur recomposites every scroll frame on phones — use a more
-     opaque solid background instead */
-  .navbar {
-    backdrop-filter: none;
-    background: rgba(250, 248, 244, 0.97);
-  }
-}
-
-
-
-/* ==============================================================
-   Additions: credentials band, process, FAQ, area pages, footer
-   ============================================================== */
-
-/* Accessibility: keyboard users can jump past the nav. */
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  z-index: 100;
-  background: var(--primary);
-  color: var(--bg);
-  padding: 0.75rem 1.25rem;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-}
-
-.skip-link:focus {
-  left: 1rem;
-  top: 1rem;
-}
-
-/* Visually hidden honeypot field — must stay in the DOM for the spam trap. */
-.hidden-field {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-}
-
-.optional {
-  color: var(--text-muted);
-  text-transform: none;
-  letter-spacing: 0;
-  font-weight: 400;
 }
 
 /* ------------------------------
    Credentials band
+
+   The single strong contrast on the page. Everything around it is
+   quiet, so this one ink block can carry weight.
 -------------------------------- */
 
 .credentials-band {
-  background: var(--primary);
-  color: var(--bg);
-  padding: 2.1rem 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding-block: 2.6rem;
 }
 
 .credentials-list {
@@ -1753,48 +702,104 @@ section[id] {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.5rem;
-  text-align: center;
+  gap: 2rem;
 }
 
 .credential {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.4rem;
   position: relative;
-}
-
-.credential:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  right: -0.75rem;
-  top: 12%;
-  height: 76%;
-  width: 1px;
-  background: rgba(250, 248, 244, 0.18);
+  padding-left: 1.5rem;
+  border-left: 1px solid rgba(241, 238, 231, 0.22);
 }
 
 .credential-value {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.7rem;
-  line-height: 1.1;
-  color: var(--gold-soft);
+  font-family: var(--display);
+  font-weight: 500;
+  font-optical-sizing: none;
+  font-variation-settings: 'opsz' 24;
+  font-size: 1.75rem;
+  line-height: 1.05;
+  color: var(--paper);
 }
 
 .credential-label {
   font-size: 0.68rem;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: rgba(250, 248, 244, 0.72);
+  letter-spacing: 0.16em;
+  color: rgba(241, 238, 231, 0.66);
+  line-height: 1.5;
+}
+
+/* ------------------------------
+   Disciplines
+
+   A recital-programme listing: ruled full-width rows, name in the
+   display face, one line of description. Replaces a five-across
+   grid of identical ringed circles.
+-------------------------------- */
+
+.services-grid {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--rule);
+}
+
+.service-item {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr) minmax(0, 1.35fr);
+  align-items: center;
+  column-gap: 2.5rem;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+}
+
+.service-icon-frame {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--ink);
+  border: none;
+  background: none;
+  transition: transform 0.3s ease;
+}
+
+.service-icon-svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  display: block;
+}
+
+.service-item:hover .service-icon-frame {
+  transform: translateX(3px);
+}
+
+.service-title {
+  font-size: clamp(1.5rem, 1rem + 1.5vw, 2.15rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.service-blurb {
+  margin: 0;
+  font-size: 0.97rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 30rem;
+}
+
+.services-note {
+  margin-top: 2rem;
+  font-size: 0.95rem;
+  color: var(--ink-faint);
 }
 
 /* ------------------------------
    Process
 -------------------------------- */
-
-.process-section {
-  background: var(--surface-soft);
-}
 
 .process-list {
   list-style: none;
@@ -1802,64 +807,243 @@ section[id] {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2.5rem;
+  gap: 3rem;
 }
 
 .process-item {
-  border-top: 1px solid var(--border-subtle);
-  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule-strong);
+  padding-top: 1.5rem;
 }
 
 .process-step {
   display: block;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.18em;
-  color: var(--gold);
-  margin-bottom: 0.7rem;
+  font-family: var(--display);
+  font-weight: 500;
+  font-optical-sizing: none;
+  font-variation-settings: 'opsz' 24;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--ink-faint);
+  margin-bottom: 1rem;
 }
 
 .process-title {
-  font-size: 1.4rem;
-  margin-bottom: 0.55rem;
+  font-size: 1.45rem;
+  margin-bottom: 0.6rem;
 }
 
 .process-body {
-  font-size: 0.93rem;
+  font-size: 0.97rem;
   line-height: 1.7;
-  color: var(--text-muted);
+  color: var(--ink-soft);
+}
+
+/* ------------------------------
+   Testimonials
+
+   The one section that changes key. Ink ground, and the quote drops
+   into the body face: this is ninety words of running text, which is
+   more than a didone italic can carry. The display face gets one
+   moment instead, at the size it is actually drawn for.
+-------------------------------- */
+
+.testimonials-section {
+  background: var(--ink);
+  border-top: none;
+  padding-block: 6.5rem;
+}
+
+.testimonials-section .eyebrow {
+  color: rgba(241, 238, 231, 0.55);
+}
+
+.testimonials-section .section-title {
+  color: var(--paper);
+}
+
+.testimonial-carousel {
+  position: relative;
+  padding: 0;
+}
+
+.testimonial-slide {
+  margin: 0;
+  max-width: 44rem;
+}
+
+.testimonial-quote {
+  font-size: clamp(1.1rem, 0.95rem + 0.6vw, 1.35rem);
+  line-height: 1.7;
+  color: rgba(241, 238, 231, 0.92);
+  margin: 0 0 2rem;
+}
+
+.testimonial-quote::before {
+  content: '\201C';
+  display: block;
+  font-family: var(--display);
+  font-optical-sizing: none;
+  font-variation-settings: 'opsz' 24;
+  font-weight: 600;
+  font-size: 4.5rem;
+  line-height: 0.55;
+  color: rgba(241, 238, 231, 0.4);
+  margin-bottom: 1.25rem;
+}
+
+.testimonial-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.testimonial-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--paper);
+}
+
+.testimonial-role {
+  font-size: 0.9rem;
+  color: rgba(241, 238, 231, 0.6);
+}
+
+.carousel-arrow {
+  position: absolute;
+  bottom: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 1px solid rgba(241, 238, 231, 0.35);
+  border-radius: 0;
+  color: var(--paper);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.carousel-arrow:hover {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink);
+}
+
+.carousel-arrow-prev {
+  right: 3rem;
+}
+
+.carousel-arrow-next {
+  right: 0;
+}
+
+/* The dots run along the bottom left; the arrows are pinned to the
+   bottom right of the same band, so the two controls share a line. */
+.testimonial-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  height: 2.4rem;
+}
+
+.testimonial-dot {
+  width: 1.75rem;
+  height: 1px;
+  padding: 0;
+  border: none;
+  background: rgba(241, 238, 231, 0.35);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.testimonial-dot:hover,
+.testimonial-dot.is-active {
+  background: var(--paper);
+}
+
+/* ------------------------------
+   Areas
+
+   A second, slightly deeper paper stock. Used once, for the one
+   section that is a dense index rather than prose - not alternated
+   down the page, which is what made the old layout read as slabs.
+-------------------------------- */
+
+.areas-section {
+  background: var(--paper-deep);
+  border-top: none;
+}
+
+.areas-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  border-top: 1px solid var(--rule);
+}
+
+.areas-list-item {
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--display);
+  font-weight: 500;
+  font-optical-sizing: none;
+  font-variation-settings: 'opsz' 24;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.areas-list-item a {
+  display: block;
+  padding: 1.1rem 0.5rem 1.1rem 0;
+  transition: padding-left 0.2s ease;
+}
+
+.areas-list-item a:hover {
+  text-decoration: none;
+  padding-left: 0.6rem;
+}
+
+.areas-cta {
+  margin-top: 2.5rem;
 }
 
 /* ------------------------------
    FAQ
 -------------------------------- */
 
-.faq-section {
-  background: var(--surface);
-}
-
 .faq-list {
-  max-width: 46rem;
-  margin: 0 auto;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--rule);
 }
 
 .faq-item {
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--rule);
 }
 
 .faq-question {
+  font-weight: 500;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 2rem;
   cursor: pointer;
   list-style: none;
-  padding: 1.25rem 0;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.28rem;
-  color: var(--primary);
-  transition: color 0.2s ease;
+  padding-block: 1.35rem;
+  font-family: var(--display);
+  font-optical-sizing: none;
+  font-variation-settings: 'opsz' 24;
+  font-size: 1.35rem;
+  line-height: 1.3;
+  color: var(--ink);
 }
 
 .faq-question::-webkit-details-marker {
@@ -1867,23 +1051,25 @@ section[id] {
 }
 
 .faq-question:hover {
-  color: var(--gold);
+  color: var(--ink-soft);
 }
 
-/* Brass plus that becomes a minus when the item is open. */
 .faq-marker {
   position: relative;
   flex: none;
-  width: 0.85rem;
-  height: 0.85rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  align-self: center;
 }
 
 .faq-marker::before,
 .faq-marker::after {
   content: '';
   position: absolute;
-  background: var(--gold);
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  background: var(--ink);
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
 }
 
 .faq-marker::before {
@@ -1908,143 +1094,465 @@ section[id] {
 }
 
 .faq-answer {
-  padding: 0 0 1.4rem;
-  max-width: 40rem;
-  font-size: 0.94rem;
+  padding: 0 0 1.6rem;
+  max-width: var(--measure);
+  color: var(--ink-soft);
+}
+
+/* ------------------------------
+   About page
+-------------------------------- */
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+  grid-template-areas:
+    'main carousel'
+    'main cards';
+  grid-template-rows: auto 1fr;
+  column-gap: 4rem;
+  row-gap: 2.5rem;
+  align-items: start;
+}
+
+.about-main-column {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-side-carousel {
+  grid-area: carousel;
+}
+
+.about-side-cards {
+  grid-area: cards;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.about-main-column .section-header {
+  margin-bottom: 2.5rem;
+}
+
+.about-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 38rem;
   line-height: 1.75;
-  color: var(--text-muted);
+}
+
+/* The opening paragraph is set larger, the way a magazine sets a
+   standfirst. It stays in the body face: several lines of running
+   text in a didone is where legibility actually breaks down. */
+.about-main > .muted:first-child {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.about-subtitle {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.45rem, 1.2rem + 0.8vw, 1.8rem);
+}
+
+.checklist {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.5rem 0 0.5rem;
+}
+
+.checklist li {
+  position: relative;
+  padding: 0.45rem 0 0.45rem 1.6rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.checklist li:last-child {
+  border-bottom: none;
+}
+
+.checklist li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.15rem;
+  width: 0.7rem;
+  height: 1px;
+  background: var(--ink);
+}
+
+/* Cards lose their chrome. A rule above the title is enough to say
+   "this is a distinct block" without a box, a shadow and a radius. */
+.card {
+  background: none;
+  border: none;
+  border-top: 1px solid var(--ink);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 1.1rem 0 0;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.definition-list {
+  margin: 0;
+}
+
+.definition-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.92rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.definition-row:last-child {
+  border-bottom: none;
+}
+
+.definition-row dt {
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  padding-top: 0.2rem;
+}
+
+.definition-row dd {
+  margin: 0;
+  color: var(--ink);
+  text-align: right;
+}
+
+.bullet-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.bullet-list li {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.bullet-list li:last-child {
+  border-bottom: none;
+}
+
+/* About portrait */
+
+.about-portrait {
+  margin: 0;
+  position: relative;
+}
+
+.about-portrait-track {
+  position: relative;
+  /* 3:4 matches both source photographs, so nothing gets cropped. */
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--paper-deep);
+}
+
+.about-portrait-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.about-portrait-image.is-active {
+  opacity: 1;
+}
+
+.about-portrait-dots {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.about-portrait-dot {
+  width: 1.5rem;
+  height: 1px;
+  padding: 0;
+  border: none;
+  background: var(--rule-strong);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.about-portrait-dot:hover,
+.about-portrait-dot.is-active {
+  background: var(--ink);
+}
+
+/* ------------------------------
+   Contact page
+
+   No card, no shadow, no box. The form sits on the paper and the
+   fields are ruled underlines, which is how a printed form behaves.
+-------------------------------- */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+  column-gap: 4rem;
+  row-gap: 3rem;
+}
+
+.contact-card {
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.contact-form {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2rem;
+  row-gap: 1.75rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.field label {
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+}
+
+.field input,
+.field textarea,
+.field select {
+  border: none;
+  border-bottom: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: transparent;
+  padding: 0.55rem 0;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  transition: border-color 0.18s ease;
+}
+
+.field textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.field select {
+  appearance: none;
+  background-image: none;
+  cursor: pointer;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--ink-faint);
+  opacity: 0.7;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-bottom-color: var(--ink);
+  box-shadow: 0 1px 0 0 var(--ink);
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.status-message {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--ink);
+}
+
+.status-success {
+  color: var(--ink);
+}
+
+.status-error {
+  color: #8c2f22;
+  border-left-color: #8c2f22;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.detail-label {
+  display: block;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  font-weight: 600;
+}
+
+.detail-link,
+.detail-value {
+  font-size: 1rem;
+  color: var(--ink);
 }
 
 /* ------------------------------
    Area pages
 -------------------------------- */
 
-/* Deliberately quieter than the eyebrow directly beneath it — at the same
-   size and letter-spacing the two uppercase lines read as one muddled block. */
 .breadcrumb {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--gold);
-  opacity: 0.75;
-  margin-bottom: 2.9rem;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  margin-bottom: 2.5rem;
 }
 
 .breadcrumb [aria-current] {
-  color: var(--text-muted);
-}
-
-.breadcrumb a:hover {
-  color: var(--gold);
+  color: var(--ink);
 }
 
 .area-page-header {
-  max-width: 46rem;
-  border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 1.8rem;
-  margin-bottom: 2.6rem;
+  margin-bottom: 3rem;
 }
 
 .area-page-body {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 20rem;
-  gap: 3rem;
+  grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+  column-gap: 4rem;
+  row-gap: 3rem;
   align-items: start;
 }
 
-.area-page-main > p {
-  margin-bottom: 1.15rem;
-  line-height: 1.8;
-  color: var(--text-muted);
+.area-page-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 38rem;
+  line-height: 1.75;
 }
 
-/* Larger opening paragraph — gives the page an editorial entry point. */
 .lead-paragraph {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.32rem;
-  line-height: 1.62;
-  color: var(--text-main) !important;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--ink);
 }
 
 .area-highlights {
-  margin: 1.8rem 0 2.2rem;
+  margin-block: 1rem 1.5rem;
 }
 
 .area-page-actions {
   display: flex;
+  gap: 1rem;
   flex-wrap: wrap;
-  gap: 0.9rem;
-  margin-top: 2.2rem;
+  margin-top: 1.5rem;
 }
 
 .area-page-aside {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  position: sticky;
-  top: 6rem;
+  gap: 2.5rem;
 }
 
 .area-links {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  font-size: 0.92rem;
+}
+
+.area-links li {
+  border-bottom: 1px solid var(--rule);
+}
+
+.area-links li:last-child {
+  border-bottom: none;
 }
 
 .area-links a {
-  color: var(--text-muted);
-  transition: color 0.2s ease;
-}
-
-.area-links a:hover {
-  color: var(--gold);
+  display: block;
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
 }
 
 .area-links-inline {
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.4rem;
-  margin: 1.5rem 0;
-}
-
-.areas-list-item a {
-  transition: color 0.2s ease;
-}
-
-.areas-list-item a:hover {
-  color: var(--gold);
-  text-decoration: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  border-top: 1px solid var(--rule);
+  margin-bottom: 2.5rem;
 }
 
 /* ------------------------------
-   Footer additions
+   Footer
 -------------------------------- */
 
 .footer {
-  padding: 2.6rem 0 1.5rem;
+  margin-top: auto;
+  background: var(--ink);
+  color: rgba(241, 238, 231, 0.75);
+  padding-block: 3.5rem 2.5rem;
+}
+
+.footer a {
+  color: rgba(241, 238, 231, 0.75);
+}
+
+.footer a:hover {
+  color: var(--paper);
 }
 
 .footer-areas {
-  padding-bottom: 1.8rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(241, 238, 231, 0.18);
 }
 
 .footer-heading {
-  font-size: 0.72rem;
-  font-family: 'Lato', sans-serif;
-  font-weight: 700;
+  font-family: var(--text);
+  font-size: 0.66rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--text-muted);
-  margin-bottom: 1rem;
+  color: rgba(241, 238, 231, 0.5);
+  margin-bottom: 1.25rem;
 }
 
 .footer-area-links {
@@ -2052,94 +1560,287 @@ section[id] {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.55rem 1.5rem;
-  font-size: 0.85rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.5rem 2rem;
+  font-size: 0.92rem;
 }
 
-.footer-area-links a {
-  color: var(--text-muted);
-  transition: color 0.2s ease;
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-top: 2.5rem;
 }
 
-.footer-area-links a:hover {
-  color: var(--gold);
-  text-decoration: none;
+.footer-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer-brand {
+  font-family: var(--display);
+  font-weight: 500;
+  font-optical-sizing: none;
+  font-variation-settings: 'opsz' 24;
+  font-size: 1.1rem;
+  color: var(--paper);
+}
+
+.footer-note {
+  font-size: 0.9rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.9rem;
 }
 
 /* ------------------------------
-   Responsive — new sections
+   Utilities
 -------------------------------- */
 
-@media (max-width: 960px) {
-  .area-page-body {
-    grid-template-columns: 1fr;
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* Honeypot: must stay in the DOM, must never be seen. */
+.hidden-field {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.optional {
+  color: var(--ink-faint);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+/* Scroll-reveal is gone: content is visible at rest. The classes
+   remain as markup hooks so nothing has to be renamed. */
+.reveal,
+.reveal-stagger .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* ------------------------------
+   Responsive
+-------------------------------- */
+
+@media (max-width: 1024px) {
+  .section-header {
+    grid-template-columns: 8rem minmax(0, 1fr);
+    column-gap: 2.5rem;
   }
 
-  .area-page-aside {
-    position: static;
+  .about-layout,
+  .contact-layout,
+  .area-page-body {
+    column-gap: 2.5rem;
+  }
+
+  .service-item {
+    grid-template-columns: 2.75rem minmax(0, 1fr) minmax(0, 1.1fr);
+    column-gap: 1.75rem;
+  }
+}
+
+@media (max-width: 860px) {
+  .section {
+    padding-block: 4rem;
+  }
+
+  /* The rail collapses: label sits above the heading. */
+  .section-header {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.9rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .eyebrow,
+  .section-title,
+  .section-subtitle {
+    grid-column: 1;
+  }
+
+  .eyebrow {
+    padding-top: 0;
+  }
+
+  .service-item {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    row-gap: 0.4rem;
+    align-items: start;
+    padding-block: 1.35rem;
+  }
+
+  .service-icon-frame {
+    grid-row: span 2;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .service-icon-svg {
+    width: 1.8rem;
+    height: 1.8rem;
   }
 
   .process-list {
-    grid-template-columns: 1fr;
-    gap: 1.8rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
   }
 
-  .footer-area-links {
+  .credentials-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem;
+  }
+
+  .about-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'carousel'
+      'main'
+      'cards';
+  }
+
+  /* Keep the portrait upright when it stacks; cap the width so it does
+     not tower over the text it introduces. */
+  .about-side-carousel {
+    max-width: 22rem;
+  }
+
+  .contact-layout,
+  .area-page-body {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .credentials-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.6rem 1rem;
-  }
-
-  /* The vertical rules only make sense in a single row. */
-  .credential:not(:last-child)::after {
+  .nav-desktop {
     display: none;
   }
 
-  .service-icon-frame {
-    width: 5.5rem;
-    height: 5.5rem;
+  .mobile-toggle {
+    display: inline-flex;
+    flex-shrink: 0;
   }
 
-  .service-icon-svg {
-    width: 2.7rem;
-    height: 2.7rem;
+  .mobile-menu {
+    display: block;
   }
 
-  .faq-question {
-    font-size: 1.15rem;
+  .brand-logo {
+    width: 2.4rem;
+    height: 2.4rem;
   }
 
-  .lead-paragraph {
-    font-size: 1.18rem;
+  .brand-subtitle {
+    display: none;
+  }
+
+  .landing-hero {
+    min-height: 100svh;
+  }
+
+  .landing-hero-image,
+  .landing-hero-video {
+    object-position: 22% center;
+  }
+
+  .landing-hero-gradient {
+    background: linear-gradient(
+      170deg,
+      rgba(14, 12, 10, 0.72) 0%,
+      rgba(14, 12, 10, 0.55) 45%,
+      rgba(14, 12, 10, 0.82) 100%
+    );
+  }
+
+  .landing-hero-content {
+    padding-block: 3.5rem;
+  }
+
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Backdrop blur repaints every scroll frame on phones. Scoped so it
+     cannot override the transparent state over the hero video — both
+     selectors are one class deep, so this one would otherwise win on
+     source order alone. */
+  .navbar:not(.navbar-transparent) {
+    backdrop-filter: none;
+    background: rgba(241, 238, 231, 0.98);
   }
 }
 
 @media (max-width: 480px) {
-  .footer-area-links {
-    grid-template-columns: 1fr;
+  :root {
+    --gutter: 1.25rem;
+  }
+
+  .section {
+    padding-block: 3rem;
+  }
+
+  .credentials-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .areas-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .definition-row {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .definition-row dd {
+    text-align: left;
   }
 }
 
-/* Honour reduced-motion for every decorative animation on the site. */
 @media (prefers-reduced-motion: reduce) {
+  .landing-hero-video {
+    display: none;
+  }
+
   *,
   *::before,
   *::after {
-    animation-duration: 0.001ms !important;
+    animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .hero-fade,
-  .reveal {
-    opacity: 1 !important;
-    transform: none !important;
+    transition-duration: 0.01ms !important;
   }
 }

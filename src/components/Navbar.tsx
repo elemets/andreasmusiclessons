@@ -1,12 +1,37 @@
 // src/components/Navbar.tsx
-import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import brandLogo from '../assets/AndreaMusicCoachLogoNoText.png';
 
 const teacherName = 'Andrea';
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
+  const { pathname } = useLocation();
+
+  // Only the home page has a hero to sit over. Everywhere else the bar
+  // keeps its paper background from the first paint.
+  const overHero = pathname === '/';
+
+  useEffect(() => {
+    if (!overHero) {
+      setPastHero(false);
+      return;
+    }
+    const sync = () => setPastHero(window.scrollY > window.innerHeight - 72);
+    sync();
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    return () => {
+      window.removeEventListener('scroll', sync);
+      window.removeEventListener('resize', sync);
+    };
+  }, [overHero]);
+
+  // An open mobile menu needs its solid background back, or the links
+  // land on paper while the bar above them is still inverted.
+  const transparent = overHero && !pastHero && !open;
 
   const navItems = [
     { label: 'Home', to: '/' },
@@ -17,7 +42,7 @@ const Navbar: React.FC = () => {
   const closeMenu = () => setOpen(false);
 
   return (
-    <header className="navbar">
+    <header className={'navbar' + (transparent ? ' navbar-transparent' : '')}>
       <div className="container navbar-inner">
         <Link to="/" className="brand" onClick={closeMenu}>
           <img

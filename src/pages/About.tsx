@@ -63,7 +63,7 @@ const About: React.FC = () => {
               <p className="eyebrow">About</p>
               <h1 className="section-title">Meet {teacherName}</h1>
               <p className="section-subtitle">
-               Andrea is a music teacher and coach in Los Angeles. She works with children and adults who want some structure in how they learn. Piano, voice and songwriting are her main subjects, and she teaches guitar too.
+               Piano, voice, songwriting and guitar, for children and adults in Los Angeles who want some structure in how they learn.
               </p>
             </header>
 
@@ -74,7 +74,7 @@ const About: React.FC = () => {
 
             <h2 className="about-subtitle">About the lessons</h2>
             <p>
-              Andrea teaches piano, voice and guitar in students&apos; homes across Beverly Hills, Hidden Hills, Calabasas, Brentwood and the rest of LA&apos;s Westside. Technique, repertoire and ear training are worked on together, and the balance shifts with the student: a child at the very beginning needs something different from an adult picking the instrument back up after a long break. The pace follows you, the standard does not drop, and lessons go best for students who are willing to practice between them.
+              Lessons happen in students&apos; homes across Beverly Hills, Hidden Hills, Calabasas, Brentwood and the rest of LA&apos;s Westside. Technique, repertoire and ear training are worked on together, and the balance shifts with the student. They go best for anyone willing to practice in between.
             </p>
 
             <h2 className="about-subtitle">Teaching approach</h2>
@@ -82,7 +82,6 @@ const About: React.FC = () => {
               <li>A calm room to work in</li>
               <li>Honest feedback, given without pressure or judgment</li>
               <li>Lesson plans written for the individual student</li>
-              <li>Your goals, taste and schedule taken seriously</li>
             </ul>
 
             <h2 className="about-subtitle">Who lessons are for</h2>
@@ -91,11 +90,8 @@ const About: React.FC = () => {
               <li>Students who are serious about piano as a main activity</li>
               <li>Children who want help finding their own musical voice</li>
               <li>Singers at any level, from amateur to advanced</li>
-              <li>Adult beginners who want structure and a high standard</li>
-              <li>Anyone who wants help with music theory or songwriting</li>
-              <li>Guitarists starting out, from a first chord to playing a song through</li>
-              <li>Pianists coming back after a break who want to sharpen up</li>
-              <li>Anyone willing to practice consistently over a long stretch</li>
+              <li>Adult beginners, and pianists coming back after a break</li>
+              <li>Anyone who wants to work on theory, songwriting or guitar</li>
             </ul>
             </article>
           </div>
@@ -150,10 +146,6 @@ const About: React.FC = () => {
                 <div className="definition-row">
                   <dt>Where</dt>
                   <dd>Students&apos; homes in Los Angeles</dd>
-                </div>
-                <div className="definition-row">
-                  <dt>Formats</dt>
-                  <dd>In-home</dd>
                 </div>
                 <div className="definition-row">
                   <dt>Students</dt>
