@@ -265,7 +265,7 @@ const Contact: React.FC = () => {
           <div className="card">
             <h2 className="card-title">Lesson times</h2>
             <ul className="bullet-list">
-              <li>All day throughout the working week</li>
+              <li>Weekdays, morning through evening</li>
               <li>Ask on a call for specific times</li>
             </ul>
           </div>

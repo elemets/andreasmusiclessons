@@ -70,10 +70,11 @@ const AreaPage: React.FC = () => {
 
               <h2 className="about-subtitle">Booking a lesson in {area.name}</h2>
               <p>
-                Get in touch and Andrea will arrange a short consultation call to
-                talk through the student’s goals, current level and the times that
-                would work each week. Weekly slots in {area.name} are limited, and
-                are held for one family at a standing time once booked.
+                Get in touch and Andrea will arrange a short call to talk through
+                the student’s goals, their current level and the times that would
+                work each week. There are only so many weekly slots in {area.name},
+                and once one is booked it is held for that family at the same time
+                every week.
               </p>
 
               <div className="area-page-actions">

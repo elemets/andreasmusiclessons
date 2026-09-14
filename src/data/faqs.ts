@@ -52,6 +52,6 @@ export const FAQS: Faq[] = [
   {
     question: 'What happens if we need to cancel a lesson?',
     answer:
-      'Andrea will share a short written lesson policy covering cancellations, rescheduling and holidays after your first enquiry, so the arrangement is clear on both sides from the start.',
+      'Andrea will share a short written lesson policy covering cancellations, rescheduling and holidays after your first inquiry, so the arrangement is clear on both sides from the start.',
   },
 ];

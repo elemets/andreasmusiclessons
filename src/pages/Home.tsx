@@ -136,7 +136,7 @@ const Home: React.FC = () => {
               <h1 className="landing-hero-heading">
                 <span className="hero-typed">{typedHeading}</span>
                 <em className="hero-fade hero-fade-delay-1">
-                  in the comfort of your home
+                  taught in your own home
                 </em>
               </h1>
 
@@ -204,7 +204,7 @@ const Home: React.FC = () => {
         <div className="container">
           <div className="section-header reveal">
             <p className="eyebrow">How it works</p>
-            <h2 className="section-title">Starting lessons is straightforward</h2>
+            <h2 className="section-title">From first call to first lesson</h2>
           </div>
 
           <ol className="process-list reveal-stagger">
@@ -224,7 +224,9 @@ const Home: React.FC = () => {
           <div className="container">
             <div className="section-header reveal">
               <p className="eyebrow">Testimonials</p>
-              <h2 className="section-title">What students are saying</h2>
+              <h2 className="section-title">
+                {testimonialCount > 1 ? 'What students say' : 'What a student says'}
+              </h2>
             </div>
 
             <div

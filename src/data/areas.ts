@@ -28,7 +28,7 @@ export const AREAS: ServedArea[] = [
       'Most families in Beverly Hills have a full afternoon calendar already, between school and sports. A teacher who comes to you takes a round trip out of the week, and students who do not have to travel tend to practice more consistently. Andrea holds a Bachelor of Music in Composition from Berklee College of Music and teaches beginners through advanced students from age seven upwards.',
     highlights: [
       'Weekday afternoon and evening slots for students at nearby schools',
-      'Taught on your own piano, the one the student practices on all week',
+      'Taught at home, on your own piano',
       'Beginners through advanced, ages seven and up',
     ],
   },
@@ -43,7 +43,7 @@ export const AREAS: ServedArea[] = [
     intro:
       'Brentwood sits between San Vicente and the hills north of Sunset, and it is one of the areas Andrea travels to most regularly. She teaches piano, voice and guitar at home, one student at a time, with lessons built around what that particular student is trying to do: a first scale, a school audition, or finishing an original song.',
     detail:
-      'Brentwood has a lot of school-age musicians in it, and a lot of competition between them. Andrea works slowly on purpose: technical foundations first, repertoire the student actually wants to play, and feedback delivered calmly enough that a child does not start dreading the lesson. Parents are welcome to sit in, and Andrea will tell them straight how practice is going.',
+      'Brentwood has a lot of school-age musicians in it, and no shortage of competition between them. Andrea works slowly on purpose: technical foundations first, repertoire the student actually wants to play, and feedback delivered calmly enough that a child does not start dreading the lesson. Parents are welcome to sit in, and Andrea will tell them straight how practice is going.',
     highlights: [
       'A regular weekly slot held for your family through the school year',
       'Repertoire chosen together with the student, week by week',
@@ -97,11 +97,11 @@ export const AREAS: ServedArea[] = [
     intro:
       'The roads above Sunset are slow, and that turns a thirty-minute lesson at an outside studio into most of an afternoon. Andrea teaches in Bel Air homes instead, covering piano, voice, guitar, music theory and songwriting in weekly one-to-one lessons.',
     detail:
-      'Andrea works with complete beginners, and with students preparing something specific: a school audition, a recital, a piece they have wanted to play for years. She holds a Bachelor of Music in Composition from Berklee College of Music, and teaches voice and piano with the same emphasis: sound technical habits first, so the music a student actually cares about comes within reach.',
+      'Andrea works with complete beginners, and with students preparing for something specific, whether that is a school audition, a recital, or a piece they have wanted to play for years. She holds a Bachelor of Music in Composition from Berklee College of Music, and teaches voice and piano with the same emphasis: sound technical habits first, so the music a student actually cares about comes within reach.',
     highlights: [
       'No canyon drive for a thirty-minute lesson',
       'Audition, recital and exam preparation when a student wants it',
-      'Berklee-trained in composition, voice and piano',
+      'Taught by a Berklee composition graduate',
     ],
   },
   {
@@ -115,7 +115,7 @@ export const AREAS: ServedArea[] = [
     intro:
       'Andrea teaches piano, voice and guitar, along with music theory and songwriting, in Pacific Palisades homes. Lessons are private and weekly, taught at a standing time, and shaped around the individual student.',
     detail:
-      'A lesson that simply arrives every week, same day, same time, on the family’s own instrument, is a large part of why students stay with it. Andrea teaches children from age seven, teenagers, and adults returning to an instrument after a long gap, and is glad to talk through what would suit your family before anything is booked.',
+      'Part of why students stay with it is that the lesson simply arrives: same day, same time, on the family’s own instrument. Andrea teaches children from age seven, teenagers, and adults returning to an instrument after a long gap, and is glad to talk through what would suit your family before anything is booked.',
     highlights: [
       'A consistent weekly time held for your family',
       'Children from age seven, teens, and returning adult students',
@@ -133,7 +133,7 @@ export const AREAS: ServedArea[] = [
     intro:
       'Andrea travels to students across Santa Monica, including the streets north of Montana and the neighborhoods around Ocean Park. She teaches piano, voice, guitar, music theory and songwriting privately at home, for children from age seven through to adults.',
     detail:
-      'Santa Monica brings her a wide mix of students: young beginners, teenagers writing their own material, and adults who played seriously once and want to get back to it. Andrea’s composition training from Berklee means a student who wants to write songs can work on that properly, with chord movement, structure, lyrics and melody all treated as craft.',
+      'Santa Monica brings her a wide mix of students: young beginners, teenagers writing their own material, and adults who played seriously once and want to get back to it. Andrea’s composition training from Berklee means a student who wants to write songs can work on that properly, with chord movement, structure, lyrics and melody all worked on directly.',
     highlights: [
       'Songwriting taught as craft, from a Berklee composition graduate',
       'Adults coming back to an instrument after years away',

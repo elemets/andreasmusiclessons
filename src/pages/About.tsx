@@ -157,7 +157,7 @@ const About: React.FC = () => {
                 </div>
                 <div className="definition-row">
                   <dt>Students</dt>
-                  <dd>Voice or piano students at any skill level</dd>
+                  <dd>Piano, voice and guitar students at any level</dd>
                 </div>
                 <div className="definition-row">
                   <dt>Focus</dt>
