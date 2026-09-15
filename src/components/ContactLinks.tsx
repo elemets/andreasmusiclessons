@@ -19,6 +19,19 @@ export const TEL_HREF = `tel:${dialable}`;
 // prefilled message work on iOS as well as Android.
 export const SMS_HREF = `sms:${dialable}?&body=${encodeURIComponent(SMS_BODY)}`;
 
+/**
+ * `href` and `onClick` for a plain-text phone link — the footer, and the
+ * inline mentions on the contact page. Those used to be bare `tel:` anchors
+ * built from `BUSINESS.telephone`, which meant two bugs at once: the tap was
+ * never reported as a lead, and the hyphens in the stored number can break
+ * dialling on some Android handsets. Spread this instead of hand-rolling the
+ * anchor, and a text link reports exactly what the buttons report.
+ */
+export const callLinkProps = (place: string) => ({
+  href: TEL_HREF,
+  onClick: () => trackLead('phone_call', place),
+});
+
 type IconProps = { className?: string };
 
 const iconBase = {

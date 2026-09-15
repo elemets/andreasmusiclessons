@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AREAS } from '../data/areas';
 import { BUSINESS } from '../data/site';
+import { callLinkProps } from './ContactLinks';
 
 const Footer: React.FC = () => {
   return (
@@ -39,7 +40,7 @@ const Footer: React.FC = () => {
             <a href={`mailto:${BUSINESS.email}`} className="footer-link">
               {BUSINESS.email}
             </a>
-            <a href={`tel:${BUSINESS.telephone}`} className="footer-link">
+            <a {...callLinkProps('footer')} className="footer-link">
               {BUSINESS.telephoneDisplay}
             </a>
           </div>

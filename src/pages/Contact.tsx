@@ -39,7 +39,7 @@ import { FAQS } from '../data/faqs';
 import { faqSchema } from '../data/schema';
 import { CONTACT_META } from '../data/routes';
 import { trackLead } from '../lib/tracking';
-import { CallLink, TextLink } from '../components/ContactLinks';
+import { CallLink, TextLink, callLinkProps } from '../components/ContactLinks';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -210,7 +210,7 @@ const Contact: React.FC = () => {
                 <p className="status-message status-error">
                   Something went wrong and your message was not sent. Please
                   call or text Andrea at{' '}
-                  <a href={`tel:${BUSINESS.telephone}`}>{BUSINESS.telephoneDisplay}</a>, or
+                  <a {...callLinkProps('contact_form_error')}>{BUSINESS.telephoneDisplay}</a>, or
                   email{' '}
                   <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>.
                 </p>
@@ -250,7 +250,7 @@ const Contact: React.FC = () => {
             <ul className="bullet-list">
               <li>
                 <span className="detail-label">Phone</span>
-                <a href={`tel:${BUSINESS.telephone}`} className="detail-link">
+                <a {...callLinkProps('contact_details')} className="detail-link">
                   {BUSINESS.telephoneDisplay}
                 </a>
               </li>
